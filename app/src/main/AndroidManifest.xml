@@ -25,7 +25,7 @@
 
         <!-- SplashActivity como pantalla inicial -->
         <activity
-            android:name=".activities.menu_users"
+            android:name=".activities.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.ProyectoPrueba">
             <intent-filter>
@@ -38,6 +38,10 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistroActivity" />
         <activity android:name=".activities.InicioActivity" />
+        <activity
+            android:name=".activities.menu_users"
+            android:exported="false"
+            android:launchMode="singleTop"/>
 
     </application>
 

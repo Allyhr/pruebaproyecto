@@ -13,4 +13,5 @@ public interface ApiService {
     @POST("api/autenticacion/registro")
     Call<ResponseBody> registrar(@Body Usuario usuario);
 
+    Call<Usuario> getUserData();
 }

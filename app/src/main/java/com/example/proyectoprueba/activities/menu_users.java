@@ -1,6 +1,8 @@
 package com.example.proyectoprueba.activities;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -21,6 +23,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.proyectoprueba.R;
+import com.example.proyectoprueba.modelos.Usuario;
+import com.example.proyectoprueba.network.ApiClient;
+import com.example.proyectoprueba.network.ApiService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +48,10 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class menu_users extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -54,92 +63,95 @@ public class menu_users extends AppCompatActivity implements NavigationView.OnNa
     private NavigationView navigationView;
     private Toolbar toolbar;
     private Button guardarTallerButton;
-
-    // Variables añadidas para la selección de talleres
     private Marker selectedMarker;
     private LatLng selectedLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Verificar sesión antes de continuar
+        if (!estaLogueado()) {
+            redirigirALogin();
+            return;
+        }
+
         setContentView(R.layout.menu_users);
 
-        // Configurar Toolbar
+        // Configuración del toolbar y navigation drawer
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // Configurar Navigation Drawer
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
 
-        // Configurar Toggle con Toolbar
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.open,
-                R.string.close
-        );
-
+                this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Configurar ActionBar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
 
-        // Configurar listener para el menú
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Configurar datos del header
+        // Configuración de datos del usuario en el header
         if (navigationView.getHeaderCount() > 0) {
-            TextView nombre = navigationView.getHeaderView(0).findViewById(R.id.nombreuser);
-            TextView correo = navigationView.getHeaderView(0).findViewById(R.id.correouser);
+            View headerView = navigationView.getHeaderView(0);
+            TextView nombre = headerView.findViewById(R.id.nombreuser);
+            TextView correo = headerView.findViewById(R.id.correouser);
 
-            if (nombre != null) nombre.setText("Kate Pérez");
-            if (correo != null) correo.setText("kate@ejemplo.com");
+            // Obtener datos del usuario logueado
+            SharedPreferences prefs = getSharedPreferences("sesion", MODE_PRIVATE);
+            String nombreUsuario = prefs.getString("nombre_completo", "Usuario");
+            String correoUsuario = prefs.getString("correo_usuario", "correo@ejemplo.com");
+
+            nombre.setText(nombreUsuario);
+            correo.setText(correoUsuario);
         }
 
-        // Inicializar cliente de ubicación y lugares
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        Places.initialize(getApplicationContext(), "YOUR_API_KEY");
+        // Configuración de mapas y ubicación
+        Places.initialize(getApplicationContext(), "TU_API_KEY_DE_GOOGLE_MAPS");
         placesClient = Places.createClient(this);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Configurar Mapa
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.map_containeradmin, mapFragment)
                 .commit();
         mapFragment.getMapAsync(this);
 
-        // Configurar botón Guardar Taller
+        // Configuración del botón
         guardarTallerButton = findViewById(R.id.guardar_taller_button);
-        guardarTallerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                guardarTallerFavorito();
-            }
-        });
+        guardarTallerButton.setOnClickListener(v -> guardarTallerFavorito());
+    }
+
+    private boolean estaLogueado() {
+        SharedPreferences prefs = getSharedPreferences("sesion", MODE_PRIVATE);
+        return prefs.getBoolean("sesion_activa", false);
+    }
+
+    private void redirigirALogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setOnMapLongClickListener(this); // Habilitar la selección con long press
+        mMap.setOnMapLongClickListener(this);
         getLocationPermission();
     }
 
-    // Método nuevo para manejar la selección de ubicación
     @Override
     public void onMapLongClick(LatLng latLng) {
-        // Eliminar marcador anterior si existe
         if (selectedMarker != null) {
             selectedMarker.remove();
         }
 
-        // Crear nuevo marcador rojo
         selectedMarker = mMap.addMarker(new MarkerOptions()
                 .position(latLng)
                 .title("Taller seleccionado")
@@ -149,25 +161,22 @@ public class menu_users extends AppCompatActivity implements NavigationView.OnNa
         Toast.makeText(this, "Taller seleccionado", Toast.LENGTH_SHORT).show();
     }
 
-    // Método actualizado para guardar talleres
     private void guardarTallerFavorito() {
         if (selectedLocation == null) {
-            Toast.makeText(this, "Primero selecciona un taller en el mapa (mantén presionado)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Primero selecciona un taller en el mapa", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Aquí iría tu lógica para guardar el taller en base de datos
+        // Aquí iría tu lógica para guardar en base de datos
         Toast.makeText(this,
                 "Taller guardado en: " + selectedLocation.latitude + ", " + selectedLocation.longitude,
                 Toast.LENGTH_LONG).show();
 
-        // Cambiar el marcador a verde como confirmación
         if (selectedMarker != null) {
             selectedMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
         }
     }
 
-    // El resto de tus métodos permanecen EXACTAMENTE IGUAL
     private void getLocationPermission() {
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
