@@ -22,14 +22,5 @@ public interface ApiService {
     @POST("api/autenticacion/registro")
     Call<ResponseBody> registrar(@Body Usuario usuario);
 
-    // 🔽 Agrega esto para obtener catálogos
-
-    @GET("api/catalogos/marcas")
-    Call<List<Marca>> getMarcas();
-
-    @GET("api/catalogos/modelos")
-    Call<List<Modelo>> getModelos();
-
-    @GET("api/catalogos/colores")
-    Call<List<Color>> getColores();
+    Call<Usuario> getUserData();
 }
