@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="garage_background">#1C1C1C</color>
+    <color name="garage_surface">#2F2F2F</color>
+    <color name="garage_accent">#FF6F00</color>
+    <color name="garage_text">#FFFFFF</color>
+    <color name="garage_hint">#AAAAAA</color>
+
 </resources>

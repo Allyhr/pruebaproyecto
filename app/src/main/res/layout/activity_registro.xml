@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@android:color/white">
+    android:background="#1C1C1C">
 
     <LinearLayout
         android:orientation="vertical"
@@ -12,10 +12,13 @@
         android:gravity="center_horizontal">
 
         <TextView
-            android:text="Nombre de la app"
+            android:text="Crear cuenta"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_marginBottom="32dp"
+            android:textColor="#FF6F00"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -24,14 +27,22 @@
             android:hint="Nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"/>
+            android:padding="14dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"
+            android:background="@drawable/edittext_garage"
+            android:layout_marginBottom="30dp"/>
 
         <EditText
             android:id="@+id/edtUsuario"
             android:hint="Usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"/>
+            android:padding="14dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"
+            android:background="@drawable/edittext_garage"
+            android:layout_marginBottom="30dp"/>
 
         <EditText
             android:id="@+id/edtCorreo"
@@ -39,28 +50,73 @@
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"/>
+            android:padding="14dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"
+            android:background="@drawable/edittext_garage"
+            android:layout_marginBottom="30dp"/>
 
-        <EditText
-            android:id="@+id/edtContrasena"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
+        <!-- Contraseña con botón de ver/ocultar -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginBottom="30dp">
 
-        <EditText
-            android:id="@+id/edtConfirmarContrasena"
-            android:hint="Confirmar contraseña"
-            android:inputType="textPassword"
+            <EditText
+                android:id="@+id/edtContrasena"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:background="@drawable/edittext_garage" />
+
+            <ImageView
+                android:id="@+id/btnToggleContrasena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_eye_off"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="12dp" />
+        </RelativeLayout>
+
+        <!-- Confirmar contraseña con botón de ver/ocultar -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="40dp">
+
+            <EditText
+                android:id="@+id/edtConfirmarContrasena"
+                android:hint="Confirmar contraseña"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:background="@drawable/edittext_garage" />
+
+            <ImageView
+                android:id="@+id/btnToggleConfirmar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_eye_off"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="12dp" />
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btnRegistrarse"
             android:text="Registrarse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF6F00"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
     </LinearLayout>
 </ScrollView>

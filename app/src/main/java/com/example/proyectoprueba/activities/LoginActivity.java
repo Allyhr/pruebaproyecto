@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,12 +37,46 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(view -> login());
         btnRegistro.setOnClickListener(view -> startActivity(new Intent(this, RegistroActivity.class)));
+
+        ImageView btnTogglePassword = findViewById(R.id.btnTogglePassword);
+
+        btnTogglePassword.setOnClickListener(v -> {
+            if (txtContrasena.getInputType() == (android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                // Mostrar contraseña
+                txtContrasena.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                btnTogglePassword.setImageResource(R.drawable.ic_eye_open); // cambia a ícono de ojo abierto
+            } else {
+                // Ocultar contraseña
+                txtContrasena.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                btnTogglePassword.setImageResource(R.drawable.ic_eye_closed); // cambia a ícono de ojo cerrado
+            }
+            // Mover el cursor al final del texto
+            txtContrasena.setSelection(txtContrasena.getText().length());
+        });
+
     }
 
     private void login() {
         String correo = txtCorreo.getText().toString().trim();
         String contrasena = txtContrasena.getText().toString().trim();
 
+        // Validaciones
+        if (correo.isEmpty() && contrasena.isEmpty()) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (correo.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingrese el correo", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (contrasena.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingrese la contraseña", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Lógica original si todo está correcto
         Usuario user = new Usuario(correo, contrasena);
 
         apiService.login(user).enqueue(new Callback<ResponseBody>() {
@@ -53,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, InicioActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Credenciales inválidas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Datos inválidos", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -63,4 +98,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 }

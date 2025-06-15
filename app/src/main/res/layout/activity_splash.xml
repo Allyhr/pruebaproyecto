@@ -1,29 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@android:color/white">
+    android:background="#1C1C1C"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/txtAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de la app"
-        android:textSize="24sp"
+        android:text="AutoCheck"
+        android:textSize="50sp"
         android:textStyle="bold"
+        android:fontFamily="@font/orbitron_regular"
+        android:textColor="#FF6F00"
+        android:layout_below="@id/imgLogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp" />
-
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_launcher_foreground"
-        android:layout_below="@id/txtAppName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="24dp" />
 
 </RelativeLayout>
+

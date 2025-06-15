@@ -2,22 +2,32 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1C1C1C"
     android:padding="24dp"
-    android:background="@android:color/white">
+    android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="24dp" />
 
         <TextView
-            android:text="Nombre de la app"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="32dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="AutoCheck"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#FF6F00"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_marginBottom="32dp" />
 
         <EditText
             android:id="@+id/edtCorreo"
@@ -25,35 +35,65 @@
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"/>
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"
+            android:background="@drawable/edittext_garage"
+            android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/edtContrasena"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
+        <!-- Campo de contraseña con ícono de mostrar/ocultar -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginBottom="24dp">
+
+            <EditText
+                android:id="@+id/edtContrasena"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:background="@drawable/edittext_garage"
+                android:layout_toStartOf="@+id/btnTogglePassword" />
+
+            <ImageView
+                android:id="@+id/btnTogglePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_eye_closed"
+                android:padding="12dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:focusable="true" />
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btnIniciarSesion"
-            android:text="Iniciar sesión"
+            android:text="Iniciar Sesión"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"/>
+            android:backgroundTint="#FF6F00"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
-            android:text="¿No tienes cuenta aún?"
-            android:layout_marginTop="12dp"
-            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="¿No tienes cuenta aún?"
+            android:textColor="#CCCCCC"
+            android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/btnRegistrar"
             android:text="Registrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
+            android:backgroundTint="#2F2F2F"
+            android:textColor="#FF6F00"
+            android:layout_marginTop="8dp" />
     </LinearLayout>
 </ScrollView>
