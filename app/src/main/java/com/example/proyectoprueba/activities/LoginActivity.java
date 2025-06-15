@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.proyectoprueba.R;
 import com.example.proyectoprueba.modelos.Usuario;
 import com.example.proyectoprueba.network.ApiClient;
@@ -50,7 +49,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     SharedPreferences prefs = getSharedPreferences("sesion", MODE_PRIVATE);
                     prefs.edit().putBoolean("sesion_activa", true).apply();
-                    startActivity(new Intent(LoginActivity.this, InicioActivity.class));
+
+                    // Cambia InicioActivity.class a menu_users.class
+                    startActivity(new Intent(LoginActivity.this, menu_users.class));
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Credenciales inválidas", Toast.LENGTH_SHORT).show();
