@@ -37,11 +37,8 @@
         <!-- Otras actividades -->
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistroActivity" />
-        <activity android:name=".activities.InicioActivity" />
-        <activity
-            android:name=".activities.menu_users"
-            android:exported="false"
-            android:launchMode="singleTop"/>
+        <activity android:name=".activities.menu_users" />
+
 
     </application>
 

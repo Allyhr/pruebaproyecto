@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -81,6 +82,12 @@ public class menu_users extends AppCompatActivity implements NavigationView.OnNa
         // Configuración del toolbar y navigation drawer
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // Agrega esto después de setSupportActionBar(toolbar)
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu); // Aquí pones el ícono de las tres líneas
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
 

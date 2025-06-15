@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
 
             if (sesionActiva) {
                 // Ir a Home si la sesión está activa
-                startActivity(new Intent(SplashActivity.this, InicioActivity.class));
+                startActivity(new Intent(SplashActivity.this, menu_users.class));
             } else {
                 // Ir a Login si no hay sesión
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));

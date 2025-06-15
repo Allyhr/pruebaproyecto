@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static final String BASE_URL = "http://192.168.0.217:3000/"; // Cambiar por IP real
+    private static final String BASE_URL = "http://192.168.0.9:3000/"; // Cambiar por IP real
 
     public static Retrofit getRetrofit() {
         return new Retrofit.Builder()
