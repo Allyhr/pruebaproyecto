@@ -38,7 +38,8 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistroActivity" />
         <activity android:name=".activities.menu_users" />
-
+        <activity  android:name=".AgregarEditarMantenimientoActivity" />
+        <activity android:name=".ListaMantenimientos" />
 
     </application>
 
