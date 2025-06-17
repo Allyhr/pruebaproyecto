@@ -40,19 +40,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="Vehículo (ej: Toyota Corolla 2020)"
+                android:hint="Vehículo"
                 app:boxStrokeColor="@color/colorPrimary"
                 app:hintTextColor="@color/colorPrimary">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etVehiculo"
+                <Spinner
+                    android:id="@+id/spinnerVehiculo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLines="1" />
+                    android:background="@android:color/transparent"/>
 
             </com.google.android.material.textfield.TextInputLayout>
-
             <!-- Campo Tipo de Servicio -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -62,15 +60,13 @@
                 app:boxStrokeColor="@color/colorPrimary"
                 app:hintTextColor="@color/colorPrimary">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etTipoServicio"
+                <Spinner
+                    android:id="@+id/spinnerTipoServicio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLines="1" />
+                    android:background="@android:color/transparent"/>
 
             </com.google.android.material.textfield.TextInputLayout>
-
             <!-- Selección de Fecha -->
 
             <TextView
