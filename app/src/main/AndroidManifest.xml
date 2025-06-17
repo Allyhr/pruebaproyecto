@@ -50,7 +50,6 @@
         <activity android:name=".activities.RegistroActivity" />
         <activity android:name=".activities.menu_users" />
 
-
         <!-- Actividades de Vehiculos-->
         <activity android:name=".vehiculos.FormularioVehiculoActivity" />
         <activity android:name=".vehiculos.MainActivityVehiculos" />

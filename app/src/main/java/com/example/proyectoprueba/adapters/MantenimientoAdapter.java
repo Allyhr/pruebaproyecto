@@ -9,7 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import com.example.proyectoprueba.R;
-import com.example.proyectoprueba.models.Mantenimiento;
+import com.example.proyectoprueba.modelos.Mantenimiento;
+import com.example.proyectoprueba.models.*;
 public class MantenimientoAdapter extends RecyclerView.Adapter<MantenimientoAdapter.MantenimientoViewHolder> {
 
     private List<Mantenimiento> listaMantenimientos;
