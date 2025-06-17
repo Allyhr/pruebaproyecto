@@ -7,5 +7,7 @@
     <color name="garage_accent">#FF6F00</color>
     <color name="garage_text">#FFFFFF</color>
     <color name="garage_hint">#AAAAAA</color>
+    <color name="gray_light">#F5F5F5</color>
+
 
 </resources>

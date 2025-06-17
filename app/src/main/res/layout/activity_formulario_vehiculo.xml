@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#1C1C1C">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etNombre"
+            android:hint="Nombre o alias del vehículo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"/>
+
+        <!-- Spinner para Marca -->
+        <Spinner
+            android:id="@+id/spMarca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"/>
+
+        <!-- Spinner para Modelo -->
+        <Spinner
+            android:id="@+id/spModelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/etAnio"
+                android:hint="Año del vehículo"
+                android:inputType="number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:id="@+id/etPlacas"
+                android:hint="Número de placa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+
+        <!-- Spinner para Color -->
+        <Spinner
+            android:id="@+id/spColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"/>
+
+        <EditText
+            android:id="@+id/etKilometraje"
+            android:hint="Kilometraje actual"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"/>
+
+        <!-- Spinner para Transmisión -->
+        <Spinner
+            android:id="@+id/spTransmision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"/>
+
+        <!-- Spinner para Combustible -->
+        <Spinner
+            android:id="@+id/spCombustible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnGuardar"
+                android:text="Guardar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF6F00"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:id="@+id/btnSincronizar"
+                android:text="Sincronizar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF6F00"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:id="@+id/btnCancelar"
+                android:text="Cancelar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF6F00"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
