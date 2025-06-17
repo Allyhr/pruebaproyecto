@@ -44,6 +44,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment:2.3.5")
     implementation ("androidx.navigation:navigation-ui:2.3.5")
     implementation ("com.google.android.libraries.places:places:3.1.0")
+    implementation(libs.retrofit)
     implementation(libs.swiperefreshlayout)
     implementation(libs.recyclerview)
     implementation(libs.retrofit)

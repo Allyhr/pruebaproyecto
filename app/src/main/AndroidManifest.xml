@@ -49,10 +49,6 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistroActivity" />
         <activity android:name=".activities.menu_users" />
-        <activity android:name=".activities.ConfiguracionActivity" />
-        <activity android:name=".activities.ExportarHistorialActivity" />
-        <activity android:name=".activities.TalleresFavoritosActivity" />
-        <activity android:name=".activities.IAActivity" />
 
 
     </application>
