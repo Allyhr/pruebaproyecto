@@ -23,6 +23,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAHXwPIggdjAXFV4IfvY6FbtlUtfYYog5E" />
 
+        <!-- 👇 FileProvider necesario para exportar y compartir archivos -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <!-- SplashActivity como pantalla inicial -->
         <activity
             android:name=".activities.SplashActivity"
@@ -38,6 +49,10 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistroActivity" />
         <activity android:name=".activities.menu_users" />
+        <activity android:name=".activities.ConfiguracionActivity" />
+        <activity android:name=".activities.ExportarHistorialActivity" />
+        <activity android:name=".activities.TalleresFavoritosActivity" />
+        <activity android:name=".activities.IAActivity" />
 
 
     </application>

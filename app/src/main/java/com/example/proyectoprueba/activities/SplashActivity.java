@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.proyectoprueba.MainActivity;
 import com.example.proyectoprueba.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_TIME_OUT = 2000; // 2 segundos
+    private static final int SPLASH_DURATION = 2000; // 2 segundos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,17 +18,21 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(() -> {
-            SharedPreferences prefs = getSharedPreferences("sesion", MODE_PRIVATE);
-            boolean sesionActiva = prefs.getBoolean("sesion_activa", false);
+            // Verificar si hay sesión activa
+            SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+            boolean isLoggedIn = preferences.getBoolean("is_logged_in", false);
 
-            if (sesionActiva) {
-                // Ir a Home si la sesión está activa
-                startActivity(new Intent(SplashActivity.this, menu_users.class));
+            Intent intent;
+            if (isLoggedIn) {
+                // Si hay sesión, ir al MainActivity
+                intent = new Intent(SplashActivity.this, menu_users.class);
             } else {
-                // Ir a Login si no hay sesión
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                // Si no hay sesión, ir al LoginActivity
+                intent = new Intent(SplashActivity.this, LoginActivity.class);
             }
+
+            startActivity(intent);
             finish();
-        }, SPLASH_TIME_OUT);
+        }, SPLASH_DURATION);
     }
 }

@@ -1,0 +1,38 @@
+{
+  "diagnosticos": [
+    {
+      "id": "frenos_quemados",
+      "titulo": "Posible problema en el sistema de frenos o clutch",
+      "descripcion": "Cuando hueles a quemado al frenar o acelerar, generalmente indica que las pastillas de freno están muy gastadas o que el clutch está patinando y sobrecalentándose.",
+      "solucion": "Recomendamos revisar inmediatamente las pastillas de freno y el disco de freno. Si el problema ocurre al cambiar marchas, podría ser el clutch. Evita conducir largas distancias hasta revisarlo.",
+      "palabras_clave": [
+        "huele a quemado",
+        "olor a quemado",
+        "huele quemado",
+        "olor quemado",
+        "al acelerar huele",
+        "olor al frenar",
+        "huele a goma quemada"
+      ],
+      "sintomas_relacionados": [
+        "El pedal de freno baja más de lo normal",
+        "Vibración al frenar",
+        "Dificultad para cambiar marchas"
+      ]
+    },
+    {
+      "id": "fuga_liquidos",
+      "titulo": "Posible fuga de líquidos",
+      "descripcion": "Cuando notas líquidos debajo de tu vehículo, podría ser aceite del motor, líquido de frenos, refrigerante o líquido de transmisión.",
+      "solucion": "Identifica el color del líquido (amarillo/marrón para aceite, rojo para transmisión, verde/azul para refrigerante) y revisa los niveles correspondientes. Lleva el vehículo a un taller para diagnosticar la fuga.",
+      "palabras_clave": [
+        "manchas en el piso",
+        "líquido debajo del auto",
+        "pérdida de líquido",
+        "gotea algo",
+        "hay un charco",
+        "veo líquido"
+      ]
+    }
+  ]
+}

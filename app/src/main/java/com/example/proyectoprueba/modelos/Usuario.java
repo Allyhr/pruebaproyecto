@@ -1,34 +1,46 @@
 package com.example.proyectoprueba.modelos;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Usuario {
-    @SerializedName("nombre_completo")
-    private String nombre;
-
+    private long id;
+    private String nombreCompleto;
     private String usuario;
     private String correo;
     private String contrasena;
 
-    public Usuario(String nombre, String usuario, String correo, String contrasena) {
-        this.nombre = nombre;
-        this.usuario = usuario;
-        this.correo = correo;
-        this.contrasena = contrasena;
+    // Constructor vacío
+    public Usuario() {
     }
 
+    // Constructor con parámetros básicos
     public Usuario(String correo, String contrasena) {
         this.correo = correo;
         this.contrasena = contrasena;
     }
 
-    // Getters y setters
-    public String getNombre() {
-        return nombre;
+    // Constructor completo
+    public Usuario(long id, String nombreCompleto, String usuario, String correo, String contrasena) {
+        this.id = id;
+        this.nombreCompleto = nombreCompleto;
+        this.usuario = usuario;
+        this.correo = correo;
+        this.contrasena = contrasena;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    // Getters y Setters
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getUsuario() {
