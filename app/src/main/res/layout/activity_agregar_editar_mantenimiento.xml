@@ -166,16 +166,6 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
-        <!-- Botón Sincronizar a la izquierda -->
-        <Button
-            android:id="@+id/btnSincronizar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sincronizar"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@android:color/white"
-            style="@style/Widget.MaterialComponents.Button" />
-
         <!-- Espaciador para empujar los otros botones a la derecha -->
         <View
             android:layout_width="0dp"
