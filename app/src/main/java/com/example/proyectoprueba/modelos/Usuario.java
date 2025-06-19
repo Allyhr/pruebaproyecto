@@ -1,6 +1,6 @@
 package com.example.proyectoprueba.modelos;
-
-public class Usuario {
+import java.io.Serializable;
+public class Usuario implements Serializable {
     private long id;
     private String nombreCompleto;
     private String usuario;

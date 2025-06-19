@@ -21,12 +21,23 @@
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
-            android:text="Vehículo"
+            android:text="Mantenimiento"
             android:textColor="#FF6F00"
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <!-- Nombre/Alias -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Placa de Vehiculo"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- Campo Placa con AutoComplete -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -34,16 +45,17 @@
             android:layout_marginBottom="16dp"
             app:boxStrokeColor="#FF6F00"
             app:hintTextColor="#AAAAAA"
-            app:startIconDrawable="@drawable/ic_car"
             app:startIconTint="#FF6F00">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNombre"
+            <AutoCompleteTextView
+                android:id="@+id/autoPlaca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre o alias del vehículo"
+                android:hint="Placa del vehículo"
+                android:inputType="text"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA" />
+                android:textColorHint="#FFFFFF"
+                android:completionThreshold="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -52,23 +64,24 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="Marca"
+            android:text="Tipo de servicio"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <!-- Marca -->
+        <!-- Campo Tipo de Servicio -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             app:boxStrokeColor="#FF6F00"
             app:hintTextColor="#AAAAAA"
-            android:hint="Marca">
+            app:startIconDrawable="@drawable/ic_wrench"
+            app:startIconTint="#FF6F00">
 
             <Spinner
-                android:id="@+id/spMarca"
+                android:id="@+id/spinnerTipoServicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF6F00"
@@ -76,18 +89,7 @@
                 android:spinnerMode="dropdown" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Modelo"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <!-- Modelo -->
+        <!-- Selección de Fecha -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -95,102 +97,41 @@
             android:layout_marginBottom="16dp"
             app:boxStrokeColor="#FF6F00"
             app:hintTextColor="#AAAAAA"
-            android:hint="Modelo">
+            app:startIconDrawable="@drawable/ic_calendar"
+            app:startIconTint="#FF6F00">
 
-            <Spinner
-                android:id="@+id/spModelo"
+            <TextView
+                android:id="@+id/tvFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF6F00"
-                android:popupBackground="#333333"
-                android:spinnerMode="dropdown" />
+                android:text="Seleccionar fecha"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:clickable="true"
+                android:focusable="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Año y Placa -->
-        <LinearLayout
+        <Button
+            android:id="@+id/btnSeleccionarFecha"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="16dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:text="Seleccionar Fecha"
+            android:textColor="#FF6F00"
+            app:cornerRadius="8dp"
+            app:strokeColor="#FF6F00"
+            app:strokeWidth="1dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                app:boxStrokeColor="#FF6F00"
-                app:hintTextColor="#AAAAAA"
-                android:hint="Año">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etAnio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#AAAAAA" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                app:boxStrokeColor="#FF6F00"
-                app:hintTextColor="#AAAAAA"
-                android:hint="Placa">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPlacas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#AAAAAA" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Color"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <!-- Color -->
+        <!-- Campo Kilometraje -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:boxStrokeColor="#FF6F00"
-            app:hintTextColor="#AAAAAA"
-            android:hint="Color">
-
-            <Spinner
-                android:id="@+id/spColor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FF6F00"
-                android:popupBackground="#333333"
-                android:spinnerMode="dropdown" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Kilometraje -->
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxStrokeColor="#FF6F00"
-            app:hintTextColor="#AAAAAA"
-            android:hint="Kilometraje actual"
+            app:hintTextColor="#FFFFFF"
             app:startIconDrawable="@drawable/ic_speedometer"
             app:startIconTint="#FF6F00">
 
@@ -198,69 +139,56 @@
                 android:id="@+id/etKilometraje"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Kilometraje (ej: 45,000 km)"
                 android:inputType="number"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA" />
+                android:textColorHint="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Tipo de transmisión"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <!-- Transmisión -->
+        <!-- Campo Descripción -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:boxStrokeColor="#FF6F00"
-            app:hintTextColor="#AAAAAA"
-            android:hint="Transmisión">
+            app:hintTextColor="#FFFFFF"
+            app:startIconDrawable="@drawable/ic_note"
+            app:startIconTint="#FF6F00">
 
-            <Spinner
-                android:id="@+id/spTransmision"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF6F00"
-                android:popupBackground="#333333"
-                android:spinnerMode="dropdown" />
+                android:hint="Descripción del servicio"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:minLines="2"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Tipo de combustible"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <!-- Combustible -->
+        <!-- Campo Costo -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             app:boxStrokeColor="#FF6F00"
-            app:hintTextColor="#AAAAAA"
-            android:hint="Combustible">
+            app:hintTextColor="#FFFFFF"
+            app:prefixText="$"
+            app:prefixTextColor="#FF6F00"
+            app:startIconDrawable="@drawable/ic_cash"
+            app:startIconTint="#FF6F00">
 
-            <Spinner
-                android:id="@+id/spCombustible"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCosto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF6F00"
-                android:popupBackground="#333333"
-                android:spinnerMode="dropdown" />
+                android:hint="Costo"
+                android:inputType="numberDecimal"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Botones -->

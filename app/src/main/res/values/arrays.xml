@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Marcas de vehículos -->
+    <string-array name="marcas_vehiculos">
+        <item>Seleccione marca</item>
+        <item>Toyota</item>
+        <item>Honda</item>
+        <item>Ford</item>
+        <item>Chevrolet</item>
+        <item>Nissan</item>
+        <item>Volkswagen</item>
+        <item>Hyundai</item>
+        <item>Kia</item>
+    </string-array>
+
+    <!-- Modelos de Toyota -->
+    <string-array name="modelos_toyota">
+        <item>Seleccione modelo</item>
+        <item>Corolla</item>
+        <item>Camry</item>
+        <item>RAV4</item>
+        <item>Hilux</item>
+        <item>Yaris</item>
+        <item>Prius</item>
+    </string-array>
+
+    <!-- Modelos de Honda -->
+    <string-array name="modelos_honda">
+        <item>Seleccione modelo</item>
+        <item>Civic</item>
+        <item>Accord</item>
+        <item>CR-V</item>
+        <item>HR-V</item>
+        <item>Pilot</item>
+    </string-array>
+
+    <!-- Modelos de Ford -->
+    <string-array name="modelos_ford">
+        <item>Seleccione modelo</item>
+        <item>Fiesta</item>
+        <item>Focus</item>
+        <item>Escape</item>
+        <item>Explorer</item>
+        <item>Mustang</item>
+    </string-array>
+
+    <!-- Modelos de Chevrolet -->
+    <string-array name="modelos_chevrolet">
+        <item>Seleccione modelo</item>
+        <item>Spark</item>
+        <item>Aveo</item>
+        <item>Cruze</item>
+        <item>Malibu</item>
+        <item>Equinox</item>
+    </string-array>
+
+    <!-- Modelos de Nissan -->
+    <string-array name="modelos_nissan">
+        <item>Seleccione modelo</item>
+        <item>Versa</item>
+        <item>Sentra</item>
+        <item>Altima</item>
+        <item>Rogue</item>
+        <item>Pathfinder</item>
+    </string-array>
+
+    <!-- Modelos por defecto -->
+    <string-array name="modelos_default">
+        <item>Seleccione primero una marca</item>
+    </string-array>
+
+    <!-- Colores -->
+    <string-array name="colores_vehiculos">
+        <item>Seleccione color</item>
+        <item>Blanco</item>
+        <item>Negro</item>
+        <item>Rojo</item>
+        <item>Azul</item>
+        <item>Gris</item>
+        <item>Plateado</item>
+        <item>Verde</item>
+        <item>Dorado</item>
+    </string-array>
+
+    <!-- Transmisiones -->
+    <string-array name="transmisiones">
+        <item>Seleccione transmisión</item>
+        <item>Automática</item>
+        <item>Manual</item>
+        <item>CVT</item>
+        <item>Semi-automática</item>
+    </string-array>
+
+    <!-- Combustibles -->
+    <string-array name="combustibles">
+        <item>Seleccione combustible</item>
+        <item>Gasolina</item>
+        <item>Diésel</item>
+        <item>Híbrido</item>
+        <item>Eléctrico</item>
+        <item>Gas Natural</item>
+    </string-array>
+</resources>

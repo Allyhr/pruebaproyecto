@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,6 +47,21 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
             startActivity(intent);
         });
+
+        // Verificar si ya hay una sesión activa
+        verificarSesionActiva();
+    }
+
+    private void verificarSesionActiva() {
+        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        boolean isLoggedIn = preferences.getBoolean("is_logged_in", false);
+
+        if(isLoggedIn) {
+            Intent intent = new Intent(LoginActivity.this, menu_users.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void togglePasswordVisibility() {
@@ -66,28 +80,18 @@ public class LoginActivity extends AppCompatActivity {
         String correo = edtCorreo.getText().toString().trim();
         String contrasena = edtContrasena.getText().toString().trim();
 
-        // Validaciones
         if (correo.isEmpty() || contrasena.isEmpty()) {
             Toast.makeText(this, "Correo y contraseña son obligatorios", Toast.LENGTH_SHORT).show();
             return;
         }
 
         try {
-            // Verificar credenciales en la base de datos
             Usuario usuario = dbHelper.checkUserCredentials(correo, contrasena);
 
             if (usuario != null) {
-                // Guardar sesión en SharedPreferences
-                SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putLong("user_id", usuario.getId());
-                editor.putString("nombre_completo", usuario.getNombreCompleto());
-                editor.putString("usuario", usuario.getUsuario());
-                editor.putString("correo", usuario.getCorreo());
-                editor.putBoolean("is_logged_in", true);
-                editor.apply();
+                guardarSesionUsuario(usuario);
 
-                // Redirigir al MainActivity
+                // Redirigir al menú principal
                 Intent intent = new Intent(LoginActivity.this, menu_users.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -101,6 +105,16 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void guardarSesionUsuario(Usuario usuario) {
+        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putLong("user_id", usuario.getId());
+        editor.putString("nombre_completo", usuario.getNombreCompleto());
+        editor.putString("usuario", usuario.getUsuario());
+        editor.putString("correo", usuario.getCorreo());
+        editor.putBoolean("is_logged_in", true);
+        editor.apply();
+    }
 
     @Override
     protected void onDestroy() {

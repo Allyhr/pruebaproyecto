@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 
     <application
@@ -26,7 +27,7 @@
         <!-- 👇 FileProvider necesario para exportar y compartir archivos -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -51,8 +52,14 @@
         <activity android:name=".activities.menu_users" />
 
         <!-- Actividades de Vehiculos-->
-        <activity android:name=".vehiculos.FormularioVehiculoActivity" />
-        <activity android:name=".vehiculos.MainActivityVehiculos" />
+        <activity android:name=".activities.MainVehiculoActivity" />
+        <activity android:name=".activities.FormularioVehiculoActivity" />
+        <activity android:name=".activities.IAActivity" />
+        <activity android:name=".activities.ConfiguracionActivity" />
+        <activity android:name=".activities.ExportarHistorialActivity" />
+        <activity android:name=".activities.TalleresFavoritosActivity" />
+        <activity android:name=".activities.MantenimientosActivity" />
+        <activity android:name=".activities.AddEditMantenimientoActivity" />
 
     </application>
 

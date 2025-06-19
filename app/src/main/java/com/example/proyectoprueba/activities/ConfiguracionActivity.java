@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +49,15 @@ public class ConfiguracionActivity extends AppCompatActivity
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Mostrar información del usuario en el header
+        View headerView = navigationView.getHeaderView(0);
+        TextView nombreUser = headerView.findViewById(R.id.nombreuser);
+        TextView correoUser = headerView.findViewById(R.id.correouser);
+
+        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        nombreUser.setText(preferences.getString("nombre_completo", "Usuario"));
+        correoUser.setText(preferences.getString("correo", "contact@example.com"));
+
         // Inicializar botones
         btnExportarHistorial = findViewById(R.id.btnExportarHistorial);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
@@ -71,6 +83,23 @@ public class ConfiguracionActivity extends AppCompatActivity
         finish();
     }
 
+    // ==================== [ MÉTODOS DE NAVEGACIÓN ] ====================
+    private void abrirVehiculos() {
+        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        long userId = preferences.getLong("user_id", -1);
+        if(userId != -1) {
+            Intent intent = new Intent(this, MainVehiculoActivity.class);
+            intent.putExtra("USUARIO_ID", userId);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Error al identificar al usuario", Toast.LENGTH_SHORT).show();
+            // Redirigir al login si no hay usuario
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+            finish();
+        }
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -78,11 +107,11 @@ public class ConfiguracionActivity extends AppCompatActivity
         if (id == R.id.inicio) {
             startActivity(new Intent(this, menu_users.class));
         } else if (id == R.id.gestion) {
-            // Ir a gestión de vehículos
+            abrirVehiculos();
         } else if (id == R.id.gestion_man) {
-            // Ir a gestión de mantenimiento
+            startActivity(new Intent(this, MantenimientosActivity.class));
         } else if (id == R.id.ia) {
-            // Ir a IA
+            startActivity(new Intent(this, IAActivity.class));
         } else if (id == R.id.talleres_favoritos) {
             startActivity(new Intent(this, TalleresFavoritosActivity.class));
         } else if (id == R.id.configuracion) {

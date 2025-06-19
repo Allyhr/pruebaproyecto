@@ -4,5 +4,6 @@
     <string name="close">Cerrar menú</string>
     <string name="navigation_drawer_open">Abrir menú</string>
     <string name="navigation_drawer_close">Cerrar menú</string>
+    <string name="colorBackground">#333333</string>
 
 </resources>

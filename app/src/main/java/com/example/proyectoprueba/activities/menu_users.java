@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +22,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.proyectoprueba.database.DatabaseHelper;
+import com.example.proyectoprueba.modelos.Usuario;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -36,7 +40,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
 import com.example.proyectoprueba.R;
-import com.example.proyectoprueba.database.DatabaseHelper;
 import com.example.proyectoprueba.modelos.Taller;
 import java.io.IOException;
 import java.util.List;
@@ -63,6 +66,7 @@ public class menu_users extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_users);
+
 
         // Configurar Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -284,6 +288,23 @@ public class menu_users extends AppCompatActivity implements
         }
     }
 
+    // ==================== [ MÉTODOS DE NAVEGACIÓN ] ====================
+    private void abrirVehiculos() {
+        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        long userId = preferences.getLong("user_id", -1);
+        if(userId != -1) {
+            Intent intent = new Intent(this, MainVehiculoActivity.class);
+            intent.putExtra("USUARIO_ID", userId);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Error al identificar al usuario", Toast.LENGTH_SHORT).show();
+            // Redirigir al login si no hay usuario
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+            finish();
+        }
+    }
+
     // ==================== [ NAVEGACIÓN DEL MENÚ LATERAL ] ====================
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -292,9 +313,10 @@ public class menu_users extends AppCompatActivity implements
         if (id == R.id.inicio) {
             // Ya estamos en inicio
         } else if (id == R.id.gestion) {
-            // Ir a gestión de vehículos
+            abrirVehiculos(); // Reemplaza la llamada directa a MainVehiculoActivity
         } else if (id == R.id.gestion_man) {
-            // Ir a gestión de mantenimiento
+                Intent intent = new Intent(menu_users.this, MantenimientosActivity.class);
+                startActivity(intent);
         } else if (id == R.id.ia) {
             Intent intent = new Intent(menu_users.this, IAActivity.class);
             startActivity(intent);
@@ -351,7 +373,7 @@ public class menu_users extends AppCompatActivity implements
 
         // Mostrar mensaje al usuario
         Toast.makeText(this,
-                "Ubicación guardada:\n" +
+                "Ubicación:\n" +
                         "Latitud: " + latLng.latitude + "\n" +
                         "Longitud: " + latLng.longitude,
                 Toast.LENGTH_LONG).show();
@@ -377,7 +399,7 @@ public class menu_users extends AppCompatActivity implements
                         mMap.clear();
                         mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
-                                .title("Ubicación guardada")
+                                .title("Ubicación")
                                 .snippet(direccion));
                     });
                 }

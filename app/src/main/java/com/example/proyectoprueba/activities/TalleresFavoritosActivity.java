@@ -156,6 +156,23 @@ public class TalleresFavoritosActivity extends AppCompatActivity
                 .show();
     }
 
+    // ==================== [ MÉTODOS DE NAVEGACIÓN ] ====================
+    private void abrirVehiculos() {
+        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        long userId = preferences.getLong("user_id", -1);
+        if(userId != -1) {
+            Intent intent = new Intent(this, MainVehiculoActivity.class);
+            intent.putExtra("USUARIO_ID", userId);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Error al identificar al usuario", Toast.LENGTH_SHORT).show();
+            // Redirigir al login si no hay usuario
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+            finish();
+        }
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -163,11 +180,11 @@ public class TalleresFavoritosActivity extends AppCompatActivity
         if (id == R.id.inicio) {
             startActivity(new Intent(this, menu_users.class));
         } else if (id == R.id.gestion) {
-            // Ir a gestión de vehículos
+            abrirVehiculos();
         } else if (id == R.id.gestion_man) {
-            // Ir a gestión de mantenimiento
+            startActivity(new Intent(this, MantenimientosActivity.class));
         } else if (id == R.id.ia) {
-            // Ir a IA
+            startActivity(new Intent(this, IAActivity.class));
         } else if (id == R.id.talleres_favoritos) {
             // Ya estamos aquí, solo cerramos el drawer
         } else if (id == R.id.configuracion) {

@@ -1,98 +1,102 @@
 package com.example.proyectoprueba.adapters;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.List;
 import com.example.proyectoprueba.R;
 import com.example.proyectoprueba.modelos.Mantenimiento;
-import com.example.proyectoprueba.models.*;
+import java.util.List;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class MantenimientoAdapter extends RecyclerView.Adapter<MantenimientoAdapter.MantenimientoViewHolder> {
 
-    private List<Mantenimiento> listaMantenimientos;
+    private List<Mantenimiento> mantenimientos;
     private Context context;
-    private OnItemClickListener listener;
+    private OnMantenimientoListener onMantenimientoListener;
 
-    // Interface para manejar clicks
-    public interface OnItemClickListener {
-        void onEditClick(Mantenimiento mantenimiento, int position);
-        void onDeleteClick(Mantenimiento mantenimiento, int position);
+    // Agrega este nuevo método para obtener la lista de mantenimientos
+    public List<Mantenimiento> getMantenimientos() {
+        return mantenimientos;
     }
 
-    public MantenimientoAdapter(List<Mantenimiento> listaMantenimientos, Context context) {
-        this.listaMantenimientos = listaMantenimientos;
+    public interface OnMantenimientoListener {
+        void onEditClick(int position);
+        void onDeleteClick(int position);
+    }
+
+    public MantenimientoAdapter(Context context, List<Mantenimiento> mantenimientos, OnMantenimientoListener listener) {
         this.context = context;
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+        this.mantenimientos = mantenimientos;
+        this.onMantenimientoListener = listener;
     }
 
     @NonNull
     @Override
     public MantenimientoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_mantenimiento, parent, false);
-        return new MantenimientoViewHolder(view);
+        return new MantenimientoViewHolder(view, onMantenimientoListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MantenimientoViewHolder holder, int position) {
-        Mantenimiento mantenimiento = listaMantenimientos.get(position);
+        Mantenimiento mantenimiento = mantenimientos.get(position);
 
-        holder.tvVehiculo.setText("Vehículo: " + mantenimiento.getVehiculo());
-        holder.tvTipoServicio.setText("Servicio: " + mantenimiento.getTipoServicio());
-        holder.tvFecha.setText("Fecha: " + mantenimiento.getFecha());
-        holder.tvKilometraje.setText("Kilometraje: " + mantenimiento.getKilometraje());
+        holder.tvPlaca.setText(mantenimiento.getNoPlaca());
+        holder.tvFecha.setText(mantenimiento.getFecha());
+        holder.tvTipoServicio.setText(mantenimiento.getTipoServicio());
+        holder.tvKilometraje.setText(String.format(Locale.getDefault(), "Kilometraje: %,d km", mantenimiento.getKilometraje()));
 
-        // Click listeners para los botones
-        holder.btnEditar.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onEditClick(mantenimiento, position);
-            }
-        });
-
-        holder.btnEliminar.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onDeleteClick(mantenimiento, position);
-            }
-        });
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        holder.tvCosto.setText(format.format(mantenimiento.getCosto()));
     }
 
     @Override
     public int getItemCount() {
-        return listaMantenimientos.size();
+        return mantenimientos.size();
     }
 
-    // Método para actualizar la lista (útil para búsquedas)
-    public void updateList(List<Mantenimiento> nuevaLista) {
-        this.listaMantenimientos = nuevaLista;
-        notifyDataSetChanged();
-    }
-
-    // Método para eliminar un item
-    public void removeItem(int position) {
-        listaMantenimientos.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, listaMantenimientos.size());
-    }
-
-    // ViewHolder class
     public static class MantenimientoViewHolder extends RecyclerView.ViewHolder {
-        TextView tvVehiculo, tvTipoServicio, tvFecha, tvKilometraje;
-        Button btnEditar, btnEliminar;
+        TextView tvPlaca, tvFecha, tvTipoServicio, tvKilometraje, tvCosto;
+        com.google.android.material.button.MaterialButton btnEditar, btnEliminar;
 
-        public MantenimientoViewHolder(@NonNull View itemView) {
+        public MantenimientoViewHolder(@NonNull View itemView, OnMantenimientoListener listener) {
             super(itemView);
-            tvVehiculo = itemView.findViewById(R.id.tvVehiculo);
-            tvTipoServicio = itemView.findViewById(R.id.tvTipoServicio);
+
+            tvPlaca = itemView.findViewById(R.id.tvPlaca);
             tvFecha = itemView.findViewById(R.id.tvFecha);
+            tvTipoServicio = itemView.findViewById(R.id.tvTipoServicio);
             tvKilometraje = itemView.findViewById(R.id.tvKilometraje);
+            tvCosto = itemView.findViewById(R.id.tvCosto);
             btnEditar = itemView.findViewById(R.id.btnEditar);
             btnEliminar = itemView.findViewById(R.id.btnEliminar);
+
+            btnEditar.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onEditClick(position);
+                    }
+                }
+            });
+
+            btnEliminar.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onDeleteClick(position);
+                    }
+                }
+            });
         }
+    }
+
+    public void updateList(List<Mantenimiento> newList) {
+        mantenimientos = newList;
+        notifyDataSetChanged();
     }
 }

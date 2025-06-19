@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#FF000000"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="15sp"
         />
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:textColor="#FF000000"
         android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textSize="15sp"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -35,7 +35,7 @@
             android:text="Editar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FF6F00"
+            android:backgroundTint="#3C77AA"
             android:textColor="#FFFFFF"/>
 
         <Button
@@ -43,7 +43,7 @@
             android:text="Eliminar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FF6F00"
+            android:backgroundTint="#D3453B"
             android:textColor="#FFFFFF"/>
     </LinearLayout>
 </LinearLayout>

@@ -7,5 +7,11 @@
     <color name="garage_accent">#FF6F00</color>
     <color name="garage_text">#FFFFFF</color>
     <color name="garage_hint">#AAAAAA</color>
+    <color name="colorPrimary">#9C27B0</color>
+    <color name="colorPrimaryDark">#E91E63</color>
+    <color name="colorAccent">#009688</color>
+    <color name="gray_light">#686868</color>
+    <color name="gray_medium">#BDBDBD</color>
+    <color name="chip_state_color">#424242</color>
 
 </resources>

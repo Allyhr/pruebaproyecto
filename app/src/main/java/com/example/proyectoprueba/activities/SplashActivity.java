@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
 
             Intent intent;
             if (isLoggedIn) {
-                // Si hay sesión, ir al MainActivity
+                // Si hay sesión
                 intent = new Intent(SplashActivity.this, menu_users.class);
             } else {
                 // Si no hay sesión, ir al LoginActivity

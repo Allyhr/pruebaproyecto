@@ -2,11 +2,9 @@ package com.example.proyectoprueba.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -104,12 +102,12 @@ public class RegistroActivity extends AppCompatActivity {
 
         if (id > 0) {
             // Guardar sesión con SharedPreferences
-            SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putLong("user_id", id);
-            editor.putString("user_name", usuario);
-            editor.putBoolean("is_logged_in", true);
-            editor.apply();
+            //SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+            //SharedPreferences.Editor editor = preferences.edit();
+            //editor.putLong("user_id", id);
+            //editor.putString("user_name", usuario);
+            //editor.putBoolean("is_logged_in", true);
+            //editor.apply();
 
             Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
 
