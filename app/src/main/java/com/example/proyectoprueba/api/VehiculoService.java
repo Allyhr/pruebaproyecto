@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VehiculoService {
-    private static final String BASE_URL = "http://192.168.0.8:5000/"; // Usando tu IP local y puerto 5000
+    private static final String BASE_URL = "http://192.168.1.9 :5000/"; // Usando tu IP local y puerto 5000
     private final Context context;
 
     public VehiculoService(Context context) {

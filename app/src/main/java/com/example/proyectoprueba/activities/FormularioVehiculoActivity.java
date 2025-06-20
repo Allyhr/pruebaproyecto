@@ -132,6 +132,9 @@ public class FormularioVehiculoActivity extends AppCompatActivity {
             case "Ford": return R.array.modelos_ford;
             case "Chevrolet": return R.array.modelos_chevrolet;
             case "Nissan": return R.array.modelos_nissan;
+            case "Volkswagen": return R.array.modelos_volkswagen;
+            case "Hyundai": return R.array.modelos_hyundai;
+            case "Kia": return R.array.modelos_kia;
             default: return R.array.modelos_default;
         }
     }

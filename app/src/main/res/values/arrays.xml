@@ -63,6 +63,29 @@
         <item>Rogue</item>
         <item>Pathfinder</item>
     </string-array>
+        <!-- Volkswagen -->
+        <string-array name="modelos_volkswagen">
+            <item>Jetta</item>
+            <item>Golf</item>
+            <item>Polo</item>
+            <item>Tiguan</item>
+        </string-array>
+
+        <!-- Hyundai -->
+        <string-array name="modelos_hyundai">
+            <item>Elantra</item>
+            <item>Tucson</item>
+            <item>Santa Fe</item>
+            <item>Accent</item>
+        </string-array>
+
+        <!-- Kia -->
+        <string-array name="modelos_kia">
+            <item>Rio</item>
+            <item>Soul</item>
+            <item>Sportage</item>
+            <item>Seltos</item>
+        </string-array>
 
     <!-- Modelos por defecto -->
     <string-array name="modelos_default">
