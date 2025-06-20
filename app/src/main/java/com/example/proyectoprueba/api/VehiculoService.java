@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VehiculoService {
-    private static final String BASE_URL = "http://192.168.1.9 :5000/"; // Usando tu IP local y puerto 5000
+    private static final String BASE_URL = "http://192.168.0.8:5000/"; // Usando tu IP local y puerto 5000
     private final Context context;
 
     public VehiculoService(Context context) {
@@ -95,6 +95,18 @@ public class VehiculoService {
         } catch (JSONException e) {
             callback.onError(e.getMessage());
         }
+    }
+
+    public void obtenerVehiculo(long vehiculoId, VehiculoCallback callback) {
+        String url = BASE_URL + "vehiculos/" + vehiculoId;
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET, url, null,
+                callback::onSuccess,
+                error -> callback.onError(error.toString())
+        );
+
+        ApiClient.getInstance(context).addToRequestQueue(request);
     }
 
     public void eliminarVehiculo(long vehiculoId, VehiculoCallback callback) {

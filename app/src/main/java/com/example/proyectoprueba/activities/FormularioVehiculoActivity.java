@@ -143,10 +143,44 @@ public class FormularioVehiculoActivity extends AppCompatActivity {
         if (getIntent().hasExtra("VEHICULO_ID")) {
             long id = getIntent().getLongExtra("VEHICULO_ID", -1);
             if (id != -1) {
-                vehiculoEditar = dbHelper.obtenerVehiculoPorId(id);
-                if (vehiculoEditar != null) {
-                    llenarFormulario(vehiculoEditar);
-                }
+                // Reemplazar la llamada a dbHelper por el servicio API
+                vehiculoService.obtenerVehiculo(id, new VehiculoService.VehiculoCallback() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        runOnUiThread(() -> {
+                            try {
+                                Vehiculo vehiculo = new Vehiculo();
+                                vehiculo.setId(response.getLong("id"));
+                                vehiculo.setUsuarioId(response.getLong("usuario_id"));
+                                vehiculo.setAlias(response.getString("alias"));
+                                vehiculo.setMarca(response.getString("marca"));
+                                vehiculo.setModelo(response.getString("modelo"));
+                                vehiculo.setAnio(response.getInt("anio"));
+                                vehiculo.setPlaca(response.getString("placa"));
+                                vehiculo.setColor(response.getString("color"));
+                                vehiculo.setKilometraje(response.getInt("kilometraje"));
+                                vehiculo.setTransmision(response.getString("transmision"));
+                                vehiculo.setCombustible(response.getString("combustible"));
+
+                                vehiculoEditar = vehiculo;
+                                llenarFormulario(vehiculoEditar);
+                            } catch (JSONException e) {
+                                Toast.makeText(FormularioVehiculoActivity.this,
+                                        "Error al procesar datos del vehículo",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        runOnUiThread(() ->
+                                Toast.makeText(FormularioVehiculoActivity.this,
+                                        "Error al obtener vehículo: " + error,
+                                        Toast.LENGTH_SHORT).show()
+                        );
+                    }
+                });
             }
         }
     }
