@@ -124,7 +124,8 @@ public class FormularioVehiculoActivity extends AppCompatActivity {
             }
         }
     }
-
+//El método `obtenerArrayModelos` permite cargar dinámicamente en un Spinner
+// los modelos de vehículos según la marca seleccionada por el usuario.
     private int obtenerArrayModelos(String marca) {
         switch (marca) {
             case "Toyota": return R.array.modelos_toyota;
@@ -138,7 +139,6 @@ public class FormularioVehiculoActivity extends AppCompatActivity {
             default: return R.array.modelos_default;
         }
     }
-
     private void checkEdicion() {
         if (getIntent().hasExtra("VEHICULO_ID")) {
             long id = getIntent().getLongExtra("VEHICULO_ID", -1);
