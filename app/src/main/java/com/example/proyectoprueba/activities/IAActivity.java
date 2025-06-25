@@ -59,11 +59,29 @@ public class IAActivity extends AppCompatActivity {
         agregarMensajeBot("Puedes describirlo con tus palabras o elegir una opción común:");
 
         List<String> opcionesIniciales = Arrays.asList(
-                "Huele a quemado al acelerar",
-                "El motor hace ruidos extraños",
-                "Pierde líquido debajo",
-                "Se sobrecalienta el motor"
+                "Huele a quemado al acelerar o frenar",
+                "El motor da tirones o pierde potencia",
+                "El auto no enciende (batería descargada)",
+                "El motor se sobrecalienta",
+                "Sale humo azul por el escape",
+                "Volante duro o dirección difícil de girar",
+                "Frenos chillan al detenerse",
+                "Ruidos en la suspensión al pasar baches",
+                "Transmisión automática cambia mal o resbala",
+                "El auto se va hacia un lado al manejar",
+                "Luz de check engine encendida",
+                "Hay manchas o fugas debajo del coche",
+                "Ruidos extraños al arrancar el auto",
+                "El volante vibra al conducir",
+                "Huele a gasolina dentro o fuera del auto",
+                "Pedal de freno se siente esponjoso o blando",
+                "El aire acondicionado no enfría",
+                "Chirrido de correa al encender o girar",
+                "Motor inestable o revoluciones bajan en reposo",
+                "Luces parpadean o dejan de funcionar",
+                "Llantas desgastadas de forma irregular"
         );
+
 
         listaMensajes.add(new Mensaje(opcionesIniciales, true, Mensaje.TIPO_OPCIONES));
         adapter.notifyItemInserted(listaMensajes.size() - 1);
@@ -79,7 +97,7 @@ public class IAActivity extends AppCompatActivity {
         }
     }
 
-    private void procesarMensajeConIA(String mensaje) {
+    public void procesarMensajeConIA(String mensaje) {
         mostrarCargando();
 
         new Thread(() -> {

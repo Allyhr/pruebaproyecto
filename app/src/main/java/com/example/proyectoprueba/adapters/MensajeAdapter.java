@@ -72,7 +72,9 @@ public class MensajeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     boton.setText(opcion);
                     boton.setOnClickListener(v -> {
                         if (holder.itemView.getContext() instanceof IAActivity) {
-                            ((IAActivity) holder.itemView.getContext()).agregarMensajeUsuario(opcion);
+                            IAActivity activity = (IAActivity) holder.itemView.getContext();
+                            activity.agregarMensajeUsuario(opcion);
+                            activity.procesarMensajeConIA(opcion); // ¡Esta línea faltaba!
                         }
                     });
                     opcionesHolder.layoutOpciones.addView(boton);

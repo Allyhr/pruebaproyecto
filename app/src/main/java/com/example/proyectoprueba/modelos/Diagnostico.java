@@ -97,4 +97,3 @@ public class Diagnostico {
         this.sintomasRelacionados = sintomasRelacionados;
     }
 }
-
