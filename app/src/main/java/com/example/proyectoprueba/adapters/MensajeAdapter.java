@@ -64,6 +64,7 @@ public class MensajeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ((UsuarioViewHolder) holder).tvMensaje.setText(mensaje.getContenido());
                 break;
             case TIPO_OPCIONES:
+                // Dentro de onBindViewHolder, en el case TIPO_OPCIONES:
                 OpcionesViewHolder opcionesHolder = (OpcionesViewHolder) holder;
                 opcionesHolder.layoutOpciones.removeAllViews();
 
@@ -74,7 +75,22 @@ public class MensajeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         if (holder.itemView.getContext() instanceof IAActivity) {
                             IAActivity activity = (IAActivity) holder.itemView.getContext();
                             activity.agregarMensajeUsuario(opcion);
-                            activity.procesarMensajeConIA(opcion); // ¡Esta línea faltaba!
+
+                            try {
+                                // Usar reflexión para mayor seguridad
+                                if (opcion.equals("Sí, exactamente eso")) {
+                                    activity.getClass().getMethod("confirmarDiagnosticoAnterior").invoke(activity);
+                                } else if (opcion.equals("Parcialmente, pero también...")) {
+                                    activity.getClass().getMethod("solicitarMasInformacion").invoke(activity);
+                                } else if (opcion.equals("No, es algo diferente")) {
+                                    activity.getClass().getMethod("reiniciarDiagnostico").invoke(activity);
+                                } else {
+                                    activity.procesarMensajeConIA(opcion);
+                                }
+                            } catch (Exception e) {
+                                // Fallback si los métodos no existen
+                                activity.procesarMensajeConIA(opcion);
+                            }
                         }
                     });
                     opcionesHolder.layoutOpciones.addView(boton);

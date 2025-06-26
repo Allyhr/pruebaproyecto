@@ -6,12 +6,22 @@
       "descripcion": "Cuando hueles a quemado al frenar o acelerar, generalmente indica que las pastillas de freno están muy gastadas o que el clutch está patinando y sobrecalentándose.",
       "solucion": "Recomendamos revisar inmediatamente las pastillas de freno y el disco de freno. Si el problema ocurre al cambiar marchas, podría ser el clutch. Evita conducir largas distancias hasta revisarlo.",
       "palabras_clave": [
-        "huele a quemado", "olor a quemado", "huele quemado", "olor quemado",
-        "al acelerar huele", "olor al frenar", "huele a goma quemada",
-        "huele a plástico quemado", "olor a chamusquina", "huele a quemazón",
-        "olor a caucho quemado", "huele a metálico quemado", "olor a fundido",
-        "huele a cable quemado", "olor a material quemado"
-      ],
+      "huele a quemado", "olor a quemado", "huele quemado", "olor quemado",
+      "olor extraño al frenar", "olor raro al acelerar", "huele raro al manejar",
+      "olor a goma quemada", "huele a goma quemada", "olor a caucho quemado",
+      "olor a plástico quemado", "huele a plástico derretido", "olor a chamusquina",
+      "huele a chamusquina", "olor a quemazón", "huele a quemazón",
+      "olor a material quemado", "huele a material quemado",
+      "olor a cable quemado", "huele a cable quemado", "olor a fundido",
+      "olor a metal quemado", "olor metálico al frenar", "huele a metal caliente",
+      "olor a embrague quemado", "huele a clutch quemado", "olor a freno quemado",
+      "huele a freno", "olor al pisar el freno", "olor al frenar en bajada",
+      "olor cuando bajo una pendiente", "olor fuerte al detenerme",
+      "olor a quemado al cambiar de marcha", "huele raro al cambiar velocidades",
+      "olor raro al usar el freno", "olor a fricción", "olor al acelerar",
+      "olor a motor quemado", "olor a sistema de frenos", "olor fuerte en cabina",
+      "huele feo al frenar", "olor penetrante al conducir"
+    ],
       "sintomas_relacionados": [
         "El pedal de freno baja más de lo normal",
         "Vibración al frenar",

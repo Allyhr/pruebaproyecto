@@ -29,6 +29,9 @@ public class IAHelper {
     private List<String> palabrasGenericas;
     private Map<String, List<String>> sinonimos;
     private Map<String, String> palabraBase;
+    private Diagnostico ultimoDiagnosticoMostrado;
+    private boolean esperandoConfirmacion = false;
+
 
     public IAHelper(Context context) {
         this.context = context;
@@ -40,6 +43,14 @@ public class IAHelper {
         inicializarSinonimos();
     }
 
+    public Diagnostico getUltimoDiagnosticoMostrado() {
+        return ultimoDiagnosticoMostrado;
+    }
+
+    public boolean isEsperandoConfirmacion() {
+        return esperandoConfirmacion;
+    }
+
     private void inicializarPalabrasGenericas() {
         palabrasGenericas = Arrays.asList(
                 "auto", "coche", "vehículo", "carro", "motor",
@@ -49,7 +60,6 @@ public class IAHelper {
     }
 
     private void inicializarSinonimos() {
-        // Sinónimos generales
         agregarSinonimos("auto", "coche", "vehículo", "carro", "automóvil");
         agregarSinonimos("huele", "olor", "hedor", "aroma");
         agregarSinonimos("quemado", "quemazón", "chamuscado", "tostado");
@@ -60,8 +70,6 @@ public class IAHelper {
         agregarSinonimos("problema", "falla", "avería", "defecto");
         agregarSinonimos("volante", "dirección", "timón", "manubrio");
         agregarSinonimos("frenos", "sistema de frenado", "disco de freno", "pastillas");
-
-        // Sinónimos específicos para síntomas comunes
         agregarSinonimos("chirrido", "chillido", "silbido", "rechinamiento");
         agregarSinonimos("vibración", "temblor", "sacudida", "oscilación");
         agregarSinonimos("humo", "humareda", "vaho", "neblina");
@@ -100,6 +108,11 @@ public class IAHelper {
     }
 
     public RespuestaDiagnostico diagnosticarProblema(String descripcionUsuario) {
+        // Manejar respuestas de confirmación
+        if (esperandoConfirmacion) {
+            return manejarRespuestaConfirmacion(descripcionUsuario);
+        }
+
         String textoNormalizado = normalizarTexto(descripcionUsuario);
         Log.d(TAG, "Texto normalizado: " + textoNormalizado);
 
@@ -107,6 +120,8 @@ public class IAHelper {
         for (Diagnostico diagnostico : diagnosticoMap.values()) {
             if (coincidenciaExactaMejorada(diagnostico, textoNormalizado)) {
                 Log.d(TAG, "Coincidencia exacta encontrada: " + diagnostico.getTitulo());
+                ultimoDiagnosticoMostrado = diagnostico;
+                esperandoConfirmacion = true;
                 return new RespuestaDiagnostico(diagnostico, 1.0);
             }
         }
@@ -115,7 +130,7 @@ public class IAHelper {
         List<RespuestaDiagnostico> posibles = new ArrayList<>();
         for (Diagnostico diagnostico : diagnosticoMap.values()) {
             double similitud = calcularSimilitudMejorada(diagnostico, textoNormalizado);
-            if (similitud > 0.3) { // Umbral mínimo ajustable
+            if (similitud > 0.3) {
                 posibles.add(new RespuestaDiagnostico(diagnostico, similitud));
                 Log.d(TAG, "Posible diagnóstico: " + diagnostico.getTitulo() + " - Similitud: " + similitud);
             }
@@ -125,10 +140,10 @@ public class IAHelper {
         if (!posibles.isEmpty()) {
             Collections.sort(posibles, (a, b) -> Double.compare(b.getConfianza(), a.getConfianza()));
             RespuestaDiagnostico mejor = posibles.get(0);
+            ultimoDiagnosticoMostrado = mejor.getDiagnostico();
+            esperandoConfirmacion = mejor.getConfianza() < 0.7;
 
-            // Ajustar confianza según la cantidad de palabras clave coincidentes
             if (mejor.getConfianza() < 0.7 && posibles.size() > 1) {
-                // Si hay otro diagnóstico cercano, reducir confianza
                 double diferencia = mejor.getConfianza() - posibles.get(1).getConfianza();
                 if (diferencia < 0.2) {
                     mejor.setConfianza(mejor.getConfianza() * 0.9);
@@ -148,18 +163,50 @@ public class IAHelper {
         );
     }
 
+    private RespuestaDiagnostico manejarRespuestaConfirmacion(String respuestaUsuario) {
+        esperandoConfirmacion = false;
+
+        if (respuestaUsuario.equalsIgnoreCase("Sí, exactamente eso") && ultimoDiagnosticoMostrado != null) {
+            return new RespuestaDiagnostico(
+                    new Diagnostico("confirmado", "Diagnóstico confirmado",
+                            "Has confirmado que el problema es: " + ultimoDiagnosticoMostrado.getTitulo(),
+                            ultimoDiagnosticoMostrado.getSolucion(),
+                            new JSONArray()),
+                    1.0
+            );
+        } else if (respuestaUsuario.equalsIgnoreCase("Parcialmente, pero también...")) {
+            return new RespuestaDiagnostico(
+                    new Diagnostico("mas_info", "Más información necesaria",
+                            "Por favor, describe qué otros síntomas has notado",
+                            "Esperando más detalles para refinar el diagnóstico",
+                            new JSONArray()),
+                    0.0
+            );
+        } else if (respuestaUsuario.equalsIgnoreCase("No, es algo diferente")) {
+            ultimoDiagnosticoMostrado = null;
+            return new RespuestaDiagnostico(
+                    new Diagnostico("reiniciar", "Nuevo diagnóstico",
+                            "Por favor, describe nuevamente los síntomas",
+                            "Vamos a comenzar un nuevo diagnóstico",
+                            new JSONArray()),
+                    0.0
+            );
+        } else {
+            // Si la respuesta no es ninguna de las opciones esperadas, tratar como nuevo síntoma
+            return diagnosticarProblema(respuestaUsuario);
+        }
+    }
+
     private boolean coincidenciaExactaMejorada(Diagnostico diagnostico, String texto) {
         for (String palabraClave : diagnostico.getPalabrasClave()) {
             if (texto.contains(palabraClave)) {
                 return true;
             }
 
-            // Verificar sinónimos para cada palabra clave
             String[] palabras = palabraClave.split(" ");
             boolean todasCoinciden = true;
             for (String palabra : palabras) {
                 if (!texto.contains(palabra)) {
-                    // Verificar si hay un sinónimo en el texto
                     boolean sinonimoEncontrado = false;
                     if (sinonimos.containsKey(palabra)) {
                         for (String sinonimo : sinonimos.get(palabra)) {
@@ -197,16 +244,12 @@ public class IAHelper {
             }
         }
 
-        // Combinar enfoques: máxima similitud de una palabra clave y porcentaje de coincidencias
-        double similitudCombinada = (maxSimilitud * 0.6) + ((double) coincidencias / totalPalabrasClave * 0.4);
-
-        return similitudCombinada;
+        return (maxSimilitud * 0.6) + ((double) coincidencias / totalPalabrasClave * 0.4);
     }
 
     private double calcularSimilitudPalabraClave(String palabraClave, String texto) {
         String[] palabrasClave = palabraClave.split(" ");
         String[] palabrasTexto = texto.split(" ");
-
         double mejorSimilitud = 0;
 
         for (int i = 0; i <= palabrasTexto.length - palabrasClave.length; i++) {
@@ -216,80 +259,52 @@ public class IAHelper {
             for (int j = 0; j < palabrasClave.length; j++) {
                 String palabraTextoActual = palabrasTexto[i + j];
                 String palabraClaveActual = palabrasClave[j];
-
                 double similitudPalabra = calcularSimilitudPalabra(palabraClaveActual, palabraTextoActual);
 
-                if (similitudPalabra < 0.5) { // Umbral para considerar coincidencia
+                if (similitudPalabra < 0.5) {
                     secuenciaValida = false;
                     break;
                 }
-
                 similitudActual += similitudPalabra;
             }
 
             if (secuenciaValida) {
-                similitudActual /= palabrasClave.length; // Promedio
+                similitudActual /= palabrasClave.length;
                 if (similitudActual > mejorSimilitud) {
                     mejorSimilitud = similitudActual;
                 }
             }
         }
-
         return mejorSimilitud;
     }
 
     private double calcularSimilitudPalabra(String palabra1, String palabra2) {
-        // 1. Coincidencia exacta
-        if (palabra1.equals(palabra2)) {
-            return 1.0;
-        }
+        if (palabra1.equals(palabra2)) return 1.0;
+        if (sonSinonimos(palabra1, palabra2)) return 0.9;
+        if (palabra1.contains(palabra2) || palabra2.contains(palabra1)) return 0.7;
 
-        // 2. Coincidencia de sinónimos
-        if (sonSinonimos(palabra1, palabra2)) {
-            return 0.9;
-        }
-
-        // 3. Coincidencia parcial (una palabra contiene a la otra)
-        if (palabra1.contains(palabra2) || palabra2.contains(palabra1)) {
-            return 0.7;
-        }
-
-        // 4. Distancia de Levenshtein para errores de escritura
         int distancia = distanciaLevenshtein(palabra1, palabra2);
         int longitudMax = Math.max(palabra1.length(), palabra2.length());
 
-        if (distancia <= 1 && longitudMax >= 3) {
-            return 0.8;
-        } else if (distancia <= 2 && longitudMax >= 4) {
-            return 0.6;
-        }
-
+        if (distancia <= 1 && longitudMax >= 3) return 0.8;
+        if (distancia <= 2 && longitudMax >= 4) return 0.6;
         return 0.0;
     }
 
     private boolean sonSinonimos(String palabra1, String palabra2) {
-        // Verificar si son sinónimos directos
-        if (sinonimos.containsKey(palabra1) && sinonimos.get(palabra1).contains(palabra2)) {
-            return true;
-        }
-        if (sinonimos.containsKey(palabra2) && sinonimos.get(palabra2).contains(palabra1)) {
-            return true;
-        }
+        if (sinonimos.containsKey(palabra1) && sinonimos.get(palabra1).contains(palabra2)) return true;
+        if (sinonimos.containsKey(palabra2) && sinonimos.get(palabra2).contains(palabra1)) return true;
 
-        // Verificar si comparten la misma palabra base
         String base1 = palabraBase.getOrDefault(palabra1, palabra1);
         String base2 = palabraBase.getOrDefault(palabra2, palabra2);
-
         return base1.equals(base2);
     }
 
     private String normalizarTexto(String texto) {
-        // Convertir a minúsculas y eliminar caracteres especiales
         String normalizado = texto.toLowerCase()
                 .replaceAll("[^a-záéíóúñ ]", "")
                 .trim();
 
-        // Reemplazar sinónimos por sus palabras base
         String[] palabras = normalizado.split(" ");
         StringBuilder resultado = new StringBuilder();
 

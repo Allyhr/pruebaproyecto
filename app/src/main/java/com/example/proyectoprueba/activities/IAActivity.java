@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.proyectoprueba.R;
 import com.example.proyectoprueba.adapters.MensajeAdapter;
 import com.example.proyectoprueba.ia.IAHelper;
+import com.example.proyectoprueba.modelos.Diagnostico;
 import com.example.proyectoprueba.modelos.Mensaje;
 import com.example.proyectoprueba.modelos.RespuestaDiagnostico;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class IAActivity extends AppCompatActivity {
     private List<Mensaje> listaMensajes;
     private IAHelper iaHelper;
     private Handler handler = new Handler();
+    private Diagnostico ultimoDiagnostico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,6 +180,27 @@ public class IAActivity extends AppCompatActivity {
         adapter.notifyItemInserted(listaMensajes.size() - 1);
         rvMensajes.scrollToPosition(listaMensajes.size() - 1);
     }
+
+    public void confirmarDiagnosticoAnterior() {
+        if (ultimoDiagnostico != null) {
+            // Aumentar confianza y mostrar mensaje de confirmación
+            agregarMensajeBot("¡Gracias por confirmar! El diagnóstico es correcto:\n\n" +
+                    "**" + ultimoDiagnostico.getTitulo() + "**\n\n" +
+                    "Solución recomendada: " + ultimoDiagnostico.getSolucion());
+        } else {
+            agregarMensajeBot("No tengo un diagnóstico previo para confirmar. Por favor describe el problema.");
+        }
+    }
+
+    public void solicitarMasInformacion() {
+        agregarMensajeBot("Por favor, describe qué otros síntomas has notado:");
+    }
+
+    public void reiniciarDiagnostico() {
+        ultimoDiagnostico = null;
+        agregarMensajeBot("Entendido. Vamos a empezar de nuevo. Por favor, describe el problema:");
+    }
+
 
     @Override
     protected void onDestroy() {
