@@ -80,8 +80,7 @@ public class IAActivity extends AppCompatActivity {
                 "El aire acondicionado no enfría",
                 "Chirrido de correa al encender o girar",
                 "Motor inestable o revoluciones bajan en reposo",
-                "Luces parpadean o dejan de funcionar",
-                "Llantas desgastadas de forma irregular"
+                "Luces parpadean o dejan de funcionar"
         );
 
 
@@ -127,6 +126,7 @@ public class IAActivity extends AppCompatActivity {
 
     private void mostrarRespuestaIA(RespuestaDiagnostico respuesta) {
         Log.d(TAG, "Mostrando respuesta IA: " + respuesta.getDiagnostico().getTitulo());
+        ultimoDiagnostico = respuesta.getDiagnostico(); // <-- Añade esta línea
         agregarMensajeBot(respuesta.formatearRespuesta());
 
         if (respuesta.getConfianza() < 0.7) {

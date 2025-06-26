@@ -38,7 +38,10 @@
         "no responde al acelerar", "se ahoga al acelerar", "falla al acelerar",
         "motor titubea", "va a saltos", "aceleración irregular",
         "se sacude al acelerar", "potencia intermitente", "respuesta lenta del acelerador",
-        "se sopea al acelerar", "marcha irregular"
+        "se sopea al acelerar", "marcha irregular", "tirón al arrancar", "brincos al acelerar",
+        "tropiezos del motor", "saltitos al acelerar", "motor pega tirones",
+        "motor se traba", "falta empuje al acelerar", "pérdida bruscamente de potencia",
+        "acelerón irregular", "motor se atranca"
       ],
       "sintomas_relacionados": [
         "Consumo excesivo de combustible",
@@ -53,10 +56,12 @@
       "solucion": "Intenta encender con cables auxiliares o cambia la batería si ya es vieja. Verifica también el alternador.",
       "palabras_clave": [
         "no enciende", "clic al girar llave", "batería muerta", "sin energía",
-        "se descarga la batería", "no arranca", "no da corriente",
-        "no tiene carga", "batería agotada", "no pasa corriente",
-        "no prende", "no funciona el arranque", "no gira el motor",
-        "no da chispa", "no tiene potencia eléctrica"
+        "se descarga la batería", "no arranca", "no da corriente", "no tiene carga",
+        "batería agotada", "no pasa corriente", "no prende", "no funciona el arranque",
+        "no gira el motor", "no da chispa", "no tiene potencia eléctrica",
+        "arranque débil", "solamente clic al girar", "cierra pero no enciende",
+        "batería baja", "se apaga enseguida al encender", "luces flojas al encender",
+        "tablero sin luz"
       ],
       "sintomas_relacionados": [
         "Luces tenues",
@@ -74,7 +79,9 @@
         "humo del cofre", "motor muy caliente", "indicador de temperatura alto",
         "se recalienta", "ebullición en radiador", "temperatura excesiva",
         "indicador en rojo", "se sobrecalienta", "calentamiento excesivo",
-        "temperatura elevada", "motor hirviendo"
+        "temperatura elevada", "motor hirviendo", "calor excesivo motor",
+        "termómetro sube", "vela de temperatura", "motor al rojo vivo",
+        "caldera en el motor", "temperatura en zona roja"
       ],
       "sintomas_relacionados": [
         "Testigo de temperatura encendido",
@@ -89,10 +96,11 @@
       "solucion": "Lleva el auto a revisión mecánica para evitar daños mayores al motor. Verifica nivel de aceite constantemente.",
       "palabras_clave": [
         "humo azul", "quema aceite", "olor a aceite quemado", "sale humo por el escape",
-        "humo azulado", "humo gris azulado", "escape con humo",
-        "quema lubricante", "consumo de aceite", "humo aceitoso",
-        "olor a lubricante quemado", "escape echa humo", "humo color azul",
-        "humo oscuro", "gasta aceite"
+        "humo azulado", "humo gris azulado", "escape con humo", "quema lubricante",
+        "consumo de aceite", "humo aceitoso", "olor a lubricante quemado",
+        "escape echa humo", "humo color azul", "humo oscuro", "gasta aceite",
+        "humo grasoso", "humareda azulada", "humor de aceite",
+        "escape echa vaho", "humo aceitoso azul", "carbón quemado por escape"
       ],
       "sintomas_relacionados": [
         "Consumo excesivo de aceite",
@@ -108,9 +116,10 @@
       "palabras_clave": [
         "volante duro", "cuesta girar", "problemas con la dirección", "dirección pesada",
         "dirección asistida no funciona", "volante rígido", "dirección resistente",
-        "falta asistencia", "volante difícil", "dirección tiesa",
-        "no gira fácil", "volante pesado", "dirección dura",
-        "asistencia falla", "esfuerzo al girar"
+        "falta asistencia", "volante difícil", "dirección tiesa", "no gira fácil",
+        "volante pesado", "dirección dura", "asistencia falla", "esfuerzo al girar",
+        "volante duro al estacionar", "volante renuente", "permanece rigido",
+        "volante pesado al virar", "siente pesado al girar"
       ],
       "sintomas_relacionados": [
         "Ruido al girar",
@@ -128,7 +137,9 @@
         "silbido al frenar", "rechinar frenos", "ruido agudo frenos",
         "chillido frenado", "pitido al frenar", "sonido molesto frenos",
         "ruido metálico frenos", "chirrido al detener", "rechinamiento frenos",
-        "estridor frenos", "ruido desagradable frenos"
+        "estridor frenos", "ruido desagradable frenos", "silbido frenado",
+        "eco al frenar", "rrr al pisar freno", "gruñido al frenar",
+        "pitido agudo al frenar"
       ],
       "sintomas_relacionados": [
         "Frenado débil",
@@ -146,7 +157,8 @@
         "sonido en huecos", "ruido en irregularidades", "golpe en baches",
         "crujido suspensión", "ruido en badenes", "sonido al pasar topes",
         "traqueteo suspensión", "ruido en desniveles", "sonido irregular suspensión",
-        "ruido en obstáculos", "golpe en irregularidades"
+        "ruido en obstáculos", "golpe en irregularidades", "clac al pasar bache",
+        "toc toc al girar", "grrr suspensión", "zumbido al pasar bache"
       ],
       "sintomas_relacionados": [
         "Inestabilidad al manejar",
@@ -160,11 +172,13 @@
       "descripcion": "Si el auto tarda en hacer los cambios o el motor acelera pero el auto no responde, puede ser un problema en la transmisión.",
       "solucion": "Verifica el nivel y estado del líquido de transmisión. Acude con un especialista si el problema es frecuente.",
       "palabras_clave": [
-        "transmisión falla", "resbala caja automática", "no hace los cambios", "caja automática lenta",
-        "cambios bruscos", "patina transmisión", "embrague automático falla",
-        "no cambia marchas", "demora cambios", "transmisión patina",
-        "revoluciones altas", "no engrana", "caja velocidades falla",
-        "salta cambios", "problemas caja automática"
+        "transmisión falla", "resbala caja automática", "no hace los cambios",
+        "caja automática lenta", "cambios bruscos", "patina transmisión",
+        "embrague automático falla", "no cambia marchas", "demora cambios",
+        "transmisión patina", "revoluciones altas", "no engrana",
+        "caja velocidades falla", "salta cambios", "problemas caja automática",
+        "tirones al cambiar", "retardo al cambiar", "juego en cambios",
+        "motor acelera sin mover", "patinaje al acelerar"
       ],
       "sintomas_relacionados": [
         "Revoluciones inestables",
@@ -178,11 +192,13 @@
       "descripcion": "Si al soltar el volante el auto se va hacia un lado, puede deberse a desalineación o presión desigual en las llantas.",
       "solucion": "Revisa la presión de las llantas y realiza una alineación y balanceo. También verifica el desgaste de neumáticos.",
       "palabras_clave": [
-        "se va hacia un lado", "volante desalineado", "necesita alineación", "llantas disparejas",
-        "tira a un lado", "dirección desviada", "no va recto",
+        "se va hacia un lado", "volante desalineado", "necesita alineación",
+        "llantas disparejas", "tira a un lado", "dirección desviada", "no va recto",
         "se desvía", "tendencia a un lado", "no mantiene trayectoria",
         "se corre", "inclinación al manejar", "no sigue recto",
-        "se mueve lateralmente", "dirección no centrada"
+        "se mueve lateralmente", "dirección no centrada", "traqueteo lateral",
+        "carro inclinado", "ángulo dispar llantas", "dibuja curvas solo",
+        "rueda mal alineada"
       ],
       "sintomas_relacionados": [
         "Volante vibra",
@@ -196,11 +212,12 @@
       "descripcion": "La luz de check engine puede indicar múltiples fallas: sensores, sistema de emisiones, motor o transmisión.",
       "solucion": "Es necesario escanear el vehículo con un lector OBDII para identificar el código de error y actuar según el diagnóstico.",
       "palabras_clave": [
-        "check engine encendido", "testigo motor prendido", "luz amarilla tablero", "código error motor",
-        "luz naranja motor", "indicador falla motor", "luz avería motor",
-        "testigo avería encendido", "luz diagnóstico encendida", "alerta motor",
-        "luz falla encendida", "testigo fallo motor", "luz de servicio motor",
-        "indicador problema motor", "luz de advertencia motor"
+        "check engine encendido", "testigo motor prendido", "luz amarilla tablero",
+        "código error motor", "luz naranja motor", "indicador falla motor",
+        "luz avería motor", "testigo avería encendido", "luz diagnóstico encendida",
+        "alerta motor", "luz falla encendida", "testigo fallo motor",
+        "luz de servicio motor", "indicador problema motor", "luz de advertencia motor",
+        "testigo amarillo motor", "warning motor tablero", "service engine"
       ],
       "sintomas_relacionados": [
         "Pérdida de potencia",
@@ -214,11 +231,13 @@
       "descripcion": "Si notas manchas de líquido debajo del auto, puede tratarse de aceite, refrigerante, líquido de frenos o transmisión.",
       "solucion": "Identifica el color y textura del líquido. Lleva el auto a revisión, ya que una fuga puede causar fallos graves.",
       "palabras_clave": [
-        "fuga de aceite", "manchas en el piso", "líquido debajo del auto", "gotea el coche",
-        "pérdida de líquido", "charco debajo", "escape de fluido",
+        "fuga de aceite", "manchas en el piso", "líquido debajo del auto",
+        "gotea el coche", "pérdida de líquido", "charco debajo", "escape de fluido",
         "secreción vehicular", "derrame automotor", "goteras vehiculo",
         "humedad bajo auto", "líquido escapando", "filtración vehicular",
-        "escape de lubricante", "derrame debajo"
+        "escape de lubricante", "derrame debajo",
+        "charquito aceite", "goteo refrigerante", "líquido pegajoso bajo auto",
+        "suelo mojado auto", "salpicadera manchada"
       ],
       "sintomas_relacionados": [
         "Nivel bajo de líquidos",
@@ -232,11 +251,13 @@
       "descripcion": "Si escuchas golpes, chillidos o zumbidos al encender, puede ser el motor de arranque, alternador o correa floja.",
       "solucion": "Haz revisar el sistema de encendido, batería y correas. No ignores los ruidos al encender.",
       "palabras_clave": [
-        "ruido al arrancar", "sonido al encender", "golpe al encender", "chillido al arrancar",
-        "zumbido al prender", "rechinamiento arranque", "estridor encendido",
-        "traqueteo al arrancar", "crujido al prender", "ruido metálico arranque",
-        "sonido extraño encendido", "ruido molesto arranque", "chirrido motor arranque",
-        "golpeteo al encender", "sonido anormal arranque"
+        "ruido al arrancar", "sonido al encender", "golpe al encender",
+        "chillido al arrancar", "zumbido al prender", "rechinamiento arranque",
+        "estridor encendido", "traqueteo al arrancar", "crujido al prender",
+        "ruido metálico arranque", "sonido extraño encendido",
+        "ruido molesto arranque", "chirrido motor arranque", "golpeteo al encender",
+        "sonido anormal arranque", "clic chirrido al arrancar",
+        "zumbido inicial", "clonclon al girar llave", "bramido al prender"
       ],
       "sintomas_relacionados": [
         "Encendido lento",
@@ -250,11 +271,13 @@
       "descripcion": "Vibraciones constantes en el volante pueden indicar problemas en llantas, balanceo, rótulas o suspensión.",
       "solucion": "Revisa el balanceo de llantas y el estado de los neumáticos. Si el problema persiste, consulta con un mecánico.",
       "palabras_clave": [
-        "volante vibra", "vibraciones en el carro", "se mueve el volante", "temblor al manejar",
-        "oscilación volante", "sacudida dirección", "estremecimiento al conducir",
-        "vibración al avanzar", "temblequeo volante", "agitación al manejar",
-        "movimiento irregular volante", "vibración constante", "tiritón al conducir",
-        "va vibrando", "sacudidas al manejar"
+        "volante vibra", "vibraciones en el carro", "se mueve el volante",
+        "temblor al manejar", "oscilación volante", "sacudida dirección",
+        "estremecimiento al conducir", "vibración al avanzar",
+        "temblequeo volante", "agitación al manejar", "movimiento irregular volante",
+        "vibración constante", "tiritón al conducir", "va vibrando",
+        "sacudidas al manejar", "volante zumba", "brinca volante",
+        "tiritones carretera", "volante vibrante al velocidad"
       ],
       "sintomas_relacionados": [
         "Ruido en carretera",
@@ -268,11 +291,13 @@
       "descripcion": "El olor a gasolina dentro o fuera del auto puede indicar una fuga en el sistema de combustible o tapa de tanque suelta.",
       "solucion": "Revisa el tapón del tanque, mangueras de combustible y líneas de inyección. Evita fumar cerca del vehículo.",
       "palabras_clave": [
-        "olor a gasolina", "huele a combustible", "fuga de gasolina", "olor dentro del auto",
-        "aroma a gas", "hedor combustible", "esencia gasolina",
-        "olor fuerte gas", "perfume combustible", "vapores gasolina",
-        "olor penetrante gas", "fragancia gasolina", "tufo a combustible",
-        "aroma fuerte gas", "efluvio gasolina"
+        "olor a gasolina", "huele a combustible", "fuga de gasolina",
+        "olor dentro del auto", "aroma a gas", "hedor combustible",
+        "esencia gasolina", "olor fuerte gas", "perfume combustible",
+        "vapores gasolina", "olor penetrante gas", "fragancia gasolina",
+        "tufo a combustible", "aroma fuerte gas", "efluvio gasolina",
+        "olor a nafta", "olor petróleo cercano", "penetración de gasolín",
+        "vapores tóxicos", "olor inflamable"
       ],
       "sintomas_relacionados": [
         "Consumo alto",
@@ -290,7 +315,8 @@
         "freno esponjoso", "pedal flojo", "falta presión frenos",
         "pedal hundido", "freno sin resistencia", "pedal demasiado blando",
         "freno poco firme", "pedal cede", "freno sin dureza",
-        "pedal sin tacto", "freno inconsistente"
+        "pedal sin tacto", "freno inconsistente", "pedal esponja",
+        "pedal esponjoso al frenar", "tacto esponjoso freno", "pedal muy blando"
       ],
       "sintomas_relacionados": [
         "Frenado débil",
@@ -304,11 +330,13 @@
       "descripcion": "Si el aire sale tibio o no enfría, puede deberse a falta de gas refrigerante, fuga o compresor dañado.",
       "solucion": "Lleva el auto a revisión para recargar el gas o detectar posibles fugas. Revisa también fusibles y compresor.",
       "palabras_clave": [
-        "ac no enfría", "aire caliente", "aire acondicionado falla", "no enfría el coche",
-        "clima no funciona", "ac tibio", "aire no refresca",
-        "refrigeración falla", "ac insuficiente", "enfriamiento deficiente",
-        "aire templado", "ac poco frío", "climatizador no enfría",
-        "refrigeración insatisfactoria", "ac sin potencia"
+        "ac no enfría", "aire caliente", "aire acondicionado falla",
+        "no enfría el coche", "clima no funciona", "ac tibio",
+        "aire no refresca", "refrigeración falla", "ac insuficiente",
+        "enfriamiento deficiente", "aire templado", "ac poco frío",
+        "climatizador no enfría", "refrigeración insatisfactoria",
+        "ac sin potencia", "aire caliente cabina", "AC da soplido tibio",
+        "compresor AC sin frío", "clima trabaja flojo"
       ],
       "sintomas_relacionados": [
         "Olor extraño al encender AC",
@@ -326,7 +354,8 @@
         "silbido correa", "chillido banda", "sonido correa distribución",
         "rechinamiento banda", "ruido cinturón", "estridor correa",
         "pitido banda", "sonido molesto correa", "chirrido cinta",
-        "ruido desagradable correa", "zumbido banda"
+        "ruido desagradable correa", "zumbido banda", "correa rechina",
+        "bandas chirrían", "silbido al encender", "zumbido en correa"
       ],
       "sintomas_relacionados": [
         "Luces parpadean",
@@ -340,11 +369,13 @@
       "descripcion": "Si el motor vibra, se apaga o sube y baja de revoluciones cuando está en reposo, puede haber fallos en sensores o entrada de aire.",
       "solucion": "Escanea el motor, revisa válvula IAC, sensores MAF/MAP y posibles fugas de vacío.",
       "palabras_clave": [
-        "ralentí inestable", "motor vibra parado", "se apaga en neutral", "revoluciones bajan",
-        "marcha mínima irregular", "motor inconstante", "ralentí fluctuante",
-        "revoluciones inestables", "motor titubea", "ralentí errático",
-        "marcha lenta irregular", "motor desequilibrado", "ralentí variable",
-        "motor inseguro", "revoluciones oscilantes"
+        "ralentí inestable", "motor vibra parado", "se apaga en neutral",
+        "revoluciones bajan", "marcha mínima irregular", "motor inconstante",
+        "ralentí fluctuante", "revoluciones inestables", "motor titubea",
+        "ralentí errático", "marcha lenta irregular", "motor desequilibrado",
+        "ralentí variable", "motor inseguro", "revoluciones oscilantes",
+        "ralentí salta", "baja y sube revoluciones", "motor inestable avene",
+        "vacilaciones al estar en neutro"
       ],
       "sintomas_relacionados": [
         "Consumo alto",
@@ -362,7 +393,8 @@
         "iluminación defectuosa", "faros intermitentes", "luz titila",
         "alumbrado irregular", "iluminación inestable", "luces van y vienen",
         "focos fallan", "iluminación deficiente", "luces defectuosas",
-        "alumbrado intermitente", "iluminación problemática"
+        "alumbrado intermitente", "iluminación problemática", "luces oscilan",
+        "luz corta falla", "luces se apagan solas", "luces zumban"
       ],
       "sintomas_relacionados": [
         "Luces débiles",
@@ -376,16 +408,194 @@
       "descripcion": "Si una o más llantas se desgastan más rápido o de forma dispareja, puede deberse a mala alineación, balanceo o suspensión defectuosa.",
       "solucion": "Haz una alineación y balanceo. Revisa también suspensión, presión y rotación de llantas regularmente.",
       "palabras_clave": [
-        "llantas se desgastan", "desgaste disparejo", "llanta lisa de un lado", "llantas mal alineadas",
-        "neumáticos desiguales", "gasto irregular llantas", "llantas gastadas irregularmente",
-        "desgaste anormal", "llantas desniveladas", "cauchos disparejos",
-        "desgaste asimétrico", "llantas desiguales", "neumáticos desequilibrados",
-        "desgaste irregular cubiertas", "llantas con diferente desgaste"
+        "llantas se desgastan", "desgaste disparejo", "llanta lisa de un lado",
+        "llantas mal alineadas", "neumáticos desiguales", "gasto irregular llantas",
+        "llantas gastadas irregularmente", "desgaste anormal", "llantas desniveladas",
+        "cauchos disparejos", "desgaste asimétrico", "llantas desiguales",
+        "neumáticos desequilibrados", "desgaste irregular cubiertas",
+        "llantas con diferente desgaste", "cauchos gastan más por un lado",
+        "patrón desigual llantas", "goma desgasta un borde", "neumáticos mordidos"
       ],
       "sintomas_relacionados": [
         "Vibración al manejar",
         "Volante desviado",
         "Inestabilidad en curvas"
+      ]
+    },
+    {
+      "id": "sensor_oxigeno",
+      "titulo": "Fallo en el sensor de oxígeno",
+      "descripcion": "Un sensor de oxígeno dañado puede provocar una mezcla incorrecta de aire y combustible, aumentando el consumo y generando fallos en el motor.",
+      "solucion": "Escanea el vehículo con un lector OBDII. Si el sensor está defectuoso, deberá ser reemplazado para evitar daños al catalizador y al motor.",
+      "palabras_clave": [
+        "sensor oxígeno dañado", "mezcla rica", "mezcla pobre", "consumo excesivo gasolina",
+        "emisiones altas", "sensor O2 falla", "check engine por sensor",
+        "sensor lambda dañado", "motor irregular", "sensor escape falla",
+        "fallo mezcla aire combustible", "problema emisiones", "lectura incorrecta O2",
+        "mal sensor de oxígeno", "error en mezcla aire"
+      ],
+      "sintomas_relacionados": [
+        "Luz check engine encendida",
+        "Consumo alto de combustible",
+        "Marcha inestable"
+      ]
+    },
+    {
+      "id": "alternador_falla",
+      "titulo": "Posible falla en el alternador",
+      "descripcion": "Si notas que la batería no se carga, las luces bajan de intensidad o el coche se apaga en marcha, el alternador podría estar fallando.",
+      "solucion": "Haz revisar el alternador y el sistema de carga. Un alternador defectuoso puede dejarte varado si no se repara a tiempo.",
+      "palabras_clave": [
+        "luces bajan intensidad", "batería no carga", "alternador dañado", "fallo sistema de carga",
+        "se apaga en marcha", "problema alternador", "pierde energía en movimiento",
+        "coche sin corriente", "problema con generador", "ruido alternador",
+        "chirrido alternador", "testigo batería alternador", "desgaste alternador",
+        "apagones eléctricos", "sin energía en marcha"
+      ],
+      "sintomas_relacionados": [
+        "Luces intermitentes",
+        "Batería nueva se descarga",
+        "Ruido al acelerar"
+      ]
+    },
+    {
+      "id": "filtro_aire_sucio",
+      "titulo": "Filtro de aire obstruido o sucio",
+      "descripcion": "Un filtro de aire muy sucio reduce la entrada de aire al motor, afectando el rendimiento y aumentando el consumo de combustible.",
+      "solucion": "Reemplaza el filtro de aire si está visiblemente sucio o según el kilometraje recomendado por el fabricante.",
+      "palabras_clave": [
+        "filtro aire sucio", "motor ahogado", "consume más gasolina", "falta aire al motor",
+        "rendimiento bajo", "poca potencia", "filtro tapado",
+        "aceleración lenta", "problema admisión aire", "obstrucción filtro",
+        "motor forzado", "aire contaminado motor", "filtro aire viejo",
+        "mezcla pobre por aire", "aspira mal el motor"
+      ],
+      "sintomas_relacionados": [
+        "Pérdida de potencia",
+        "Mayor consumo de combustible",
+        "Aceleración irregular"
+      ]
+    },
+    {
+      "id": "turbo_falla",
+      "titulo": "Fallo en el turbo",
+      "descripcion": "Una pérdida notable de potencia junto con silbidos agudos o humo negro puede deberse a una falla en el turbocargador.",
+      "solucion": "Evita acelerar bruscamente y lleva el vehículo a revisión para diagnosticar el estado del turbo, intercooler y sus conductos.",
+      "palabras_clave": [
+        "pierde potencia", "silbido agudo motor", "humo negro escape", "fallo turbo",
+        "no entra el turbo", "aceleración débil", "motor sin fuerza",
+        "turbo roto", "soplido extraño", "compresor no funciona",
+        "no sopla el turbo", "problema con el turbo", "turbo no activa",
+        "falla en turbina", "sin impulso al acelerar"
+      ],
+      "sintomas_relacionados": [
+        "Consumo elevado de combustible",
+        "Pérdida de potencia al subir pendientes",
+        "Humo negro al acelerar"
+      ]
+    },
+    {
+      "id": "sensor_oxigeno",
+      "titulo": "Sensor de oxígeno defectuoso",
+      "descripcion": "Cuando el sensor de oxígeno falla, puede afectar la mezcla aire-combustible, provocando aumento en el consumo o fallos en el motor.",
+      "solucion": "Escanea el sistema con equipo OBDII y reemplaza el sensor si es necesario. Verifica también el catalizador.",
+      "palabras_clave": [
+        "consumo alto", "mezcla rica", "mezcla pobre", "sensor lambda",
+        "motor inestable", "humo excesivo", "falla de sensor",
+        "sensor oxígeno dañado", "no regula mezcla", "sensor de gases",
+        "sensor mal", "problemas emisiones", "gasta mucho",
+        "código p0130", "código p0171"
+      ],
+      "sintomas_relacionados": [
+        "Check engine encendido",
+        "Fallas de arranque",
+        "Marcha irregular"
+      ]
+    },{
+      "id": "inyectores_sucios",
+      "titulo": "Inyectores sucios o defectuosos",
+      "descripcion": "Si el motor tiembla, falla al acelerar o el consumo sube, puede tratarse de inyectores obstruidos o con fuga.",
+      "solucion": "Realiza una limpieza de inyectores o sustitúyelos si están dañados. Usa aditivos preventivos periódicamente.",
+      "palabras_clave": [
+        "motor tiembla", "inyectores sucios", "inyección falla", "poca fuerza al acelerar",
+        "motor jalonea", "consumo sube", "no responde al acelerar",
+        "se ahoga motor", "inyección sucia", "falla al encender",
+        "inyección irregular", "problema combustible", "motor tosco",
+        "aceleración con fallos", "falla al pisar pedal"
+      ],
+      "sintomas_relacionados": [
+        "Olor a gasolina",
+        "Falla de arranque",
+        "Marcha mínima inestable"
+      ]
+    },
+    {
+      "id": "bujia_falla",
+      "titulo": "Falla en una o más bujías",
+      "descripcion": "Las bujías desgastadas pueden causar vibraciones, dificultad al encender y pérdida de rendimiento.",
+      "solucion": "Revisa las bujías y reemplázalas si están carbonizadas o rotas. Verifica el estado de bobinas y cables.",
+      "palabras_clave": [
+        "bujías dañadas", "falla de encendido", "bujía no chispa", "motor vibra",
+        "motor sin fuerza", "bujías viejas", "cables bujía rotos",
+        "no prende fácil", "bujía mojada", "fallo bujía",
+        "encendido irregular", "falla de bobina", "chispa débil",
+        "se apaga al encender", "no enciende bien"
+      ],
+      "sintomas_relacionados": [
+        "Falla al arrancar",
+        "Ralentí inestable",
+        "Motor da tirones"
+      ]
+    },{
+      "id": "sensor_abs",
+      "titulo": "Sensor ABS defectuoso",
+      "descripcion": "Si se enciende el testigo ABS o los frenos se comportan de forma errática, puede deberse a un sensor de rueda dañado.",
+      "solucion": "Escanea con OBDII para determinar cuál sensor está fallando. Reemplázalo y limpia conectores.",
+      "palabras_clave": [
+        "luz ABS encendida", "falla frenos", "frena mal", "sensor de rueda falla",
+        "rueda no detectada", "sensor abs dañado", "sistema ABS falla",
+        "bloqueo al frenar", "problema ABS", "frenado inestable",
+        "frenos raros", "ruido ABS", "modulador ABS falla",
+        "sensor velocidad rueda", "error ABS"
+      ],
+      "sintomas_relacionados": [
+        "Luces testigo encendidas",
+        "Pérdida de control al frenar",
+        "Bloqueo de ruedas"
+      ]
+    },{
+      "id": "bobina_ignicion",
+      "titulo": "Falla en la bobina de encendido",
+      "descripcion": "Una bobina defectuosa puede causar que el motor funcione en menos cilindros, se sienta inestable o se apague.",
+      "solucion": "Reemplaza la bobina dañada. Verifica si la falla también afecta a bujías o cables.",
+      "palabras_clave": [
+        "bobina falla", "cilindro no funciona", "motor en 3 cilindros", "falla de encendido",
+        "motor vibra mucho", "se apaga al ralentí", "bobina dañada",
+        "motor se jalonea", "chispa intermitente", "código p0300",
+        "misfire", "fallo cilindro", "motor se sacude",
+        "coche no tira", "ignición falla"
+      ],
+      "sintomas_relacionados": [
+        "Check engine encendido",
+        "Vibración intensa",
+        "Falla al acelerar"
+      ]
+    },{
+      "id": "emision_humo_negro",
+      "titulo": "Humo negro por el escape",
+      "descripcion": "El humo negro generalmente indica mezcla rica: exceso de combustible que no se quema correctamente.",
+      "solucion": "Revisa el sensor MAF, inyectores, filtro de aire y sensor de oxígeno. Puede requerir ajuste o limpieza.",
+      "palabras_clave": [
+        "humo negro", "escape sucio", "consumo alto", "mezcla rica",
+        "olor a combustible", "humo espeso", "quema gasolina",
+        "combustión incompleta", "carbonilla en escape", "olor fuerte gasolina",
+        "humo al acelerar", "salida de humo oscuro", "contaminación excesiva",
+        "quema combustible", "coche humea"
+      ],
+      "sintomas_relacionados": [
+        "Consumo excesivo",
+        "Check engine encendido",
+        "Falla al acelerar"
       ]
     }
   ]
